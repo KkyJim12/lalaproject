@@ -13,13 +13,25 @@ class UIViewController extends Controller
     public function ShowIndex() {
       $category = Category::all();
       $slide = Slide::all();
-      $firstslide = Slide::where('slide_number',$slide->min('slide_number'))->first();
-      $otherslide = Slide::where('slide_id','!=',$firstslide->slide_id)->get();
-      return view('index',[
-                            'show_category' => $category,
-                            'firstslide' => $firstslide,
-                            'otherslide' => $otherslide,
-                          ]);
+      if ($slide->count() == 0) {
+        $otherslide = null;
+        $firstslide = null;
+        return view('index',[
+                              'show_category' => $category,
+                              'otherslide' => $otherslide,
+                              'firstslide' => $firstslide,
+                            ]);
+
+      }
+      else {
+        $firstslide = Slide::where('slide_number',$slide->min('slide_number'))->first();
+        $otherslide = Slide::where('slide_id','!=',$firstslide->slide_id)->get();
+        return view('index',[
+                              'show_category' => $category,
+                              'firstslide' => $firstslide,
+                              'otherslide' => $otherslide,
+                            ]);
+      }
     }
 
     public function ShowRegister()  {

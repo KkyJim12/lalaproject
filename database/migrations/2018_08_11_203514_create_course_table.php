@@ -32,6 +32,7 @@ class CreateCourseTable extends Migration
             $table->integer('course_rank')->nullable();
             $table->string('course_comment')->nullable();
             $table->integer('course_phone');
+            $table->string('email');
             $table->string('course_website');
             $table->string('course_line')->nullable();
             $table->string('course_facebook')->nullable();

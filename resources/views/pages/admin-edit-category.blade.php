@@ -10,7 +10,7 @@
         </ul>
     </div>
 @endif
-<div class="">
+<div class="admin-category-show-box">
   <h1>แก้ไขหมวดหมู่</h1><hr>
   <form action="/admin-edit-category-process/{{$edit_category->category_id}}" method="post" enctype="multipart/form-data">
       <div class="form-group">

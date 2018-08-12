@@ -1,10 +1,10 @@
 @extends('templates.admin-templates')
 
 @section('content')
-<div class="container">
+<div class="container admin-category-show-box">
   <div class="row justify-content-center">
     <div class="col-lg-12">
-      <a class="btn btn-success form-control" href="/admin-create-category">สร้างหมวดหมู่</a>
+      <a class="btn btn-success form-control mt-3" href="/admin-create-category">สร้างหมวดหมู่</a>
       <table class="table table-striped mt-3">
         <thead>
           <tr>

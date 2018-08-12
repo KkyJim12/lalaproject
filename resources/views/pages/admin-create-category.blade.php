@@ -10,7 +10,7 @@
         </ul>
     </div>
 @endif
-<div class="">
+<div class="admin-category-show-box">
   <h1>สร้างหมวดหมู่</h1><hr>
   <form action="/admin-create-category-process" method="post" enctype="multipart/form-data">
       <div class="form-group">

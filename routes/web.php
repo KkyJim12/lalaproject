@@ -42,3 +42,21 @@ Route::post('/admin-delete-category/{category_id}','AdminController@AdminDeleteC
 Route::get('/admin-edit-category/{category_id}','UIViewController@ShowAdminEditCategory');
 
 Route::post('/admin-edit-category-process/{category_id}','AdminController@AdminEditCategoryProcess');
+
+Route::get('/category/{category_id}','UIViewController@ShowCategory');
+
+Route::get('/admin-slide','UIViewController@ShowAdminSlide')->name('admin-slide');
+
+Route::get('/admin-create-slide','UIViewController@ShowAdminCreateSlide');
+
+Route::post('/admin-create-slide-process','AdminController@AdminCreateSlideProcess');
+
+Route::post('/admin-delete-slide/{slide_id}','AdminController@AdminDeleteSlideProcess');
+
+Route::get('/admin-edit-slide/{slide_id}','UIViewController@ShowAdminEditSlide');
+
+Route::post('/admin-edit-slide-process/{slide_id}','AdminController@AdminEditSlideProcess');
+
+Route::get('/show-course/{user_id}','UIViewController@ShowCourse');
+
+Route::get('/create-course/{user_id}','UIViewController@ShowCreateCourse');

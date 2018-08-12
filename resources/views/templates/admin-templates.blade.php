@@ -11,7 +11,7 @@
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
   </head>
-  <body>
+  <body style="background-color:gray;">
     @include('components.navbar')
     <div class="container mt-5">
       <div class="row justify-content-center">

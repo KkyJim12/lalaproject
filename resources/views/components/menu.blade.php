@@ -6,33 +6,11 @@
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" aria-expanded="true">
           <ul class="navbar-nav">
+            @foreach($show_category as $show_categorys)
             <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">ธุรกิจ</a>
+              <a class="nav-link" href="/category/{{$show_categorys->category_id}}">{{$show_categorys->category_name}}</a>
             </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">คอมพิวเตอร์</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">ถ่ายภาพ/ออกแบบ</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">ภาษา</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">ทำอาหาร</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">อหังสาริมทรัพย์</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">การตลาด</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">พัฒนาตัวเอง</a>
-            </li>
-            <li class="nav-item ml-3 mr-3">
-              <a class="nav-link" href="#">อื่นๆ</a>
-            </li>
+            @endforeach
           </ul>
         </div>
   </div>

@@ -16,6 +16,7 @@
     </ul>
     <ul class="navbar-nav ml-auto mr-3">
     @if(session('user_log'))
+      <li class="nav-item mr-3"><a class="nav-link" href="/show-course/{{session('user_id')}}">สร้างคอร์ส</a></li>
       <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="profile-img mr-2" src="/assets/img/profile/{{session('user_img')}}" alt="user_img">

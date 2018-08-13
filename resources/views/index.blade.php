@@ -36,5 +36,63 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>คอร์สยอดนิยม</h1><hr>
+    </div>
+    @foreach($suggest_course as $suggest_courses)
+    <div class="col-lg-3">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h5 class="card-title">{{$suggest_courses->course_name}}</h5>
+          <p class="card-text">ราคา: {{$suggest_courses->course_price}}</p>
+          <p class="card-text">คะแนน: {{$suggest_courses->course_rank}}</p>
+          <p class="card-text">จำนวนคนเรียน: {{$suggest_courses->course_max}}</p>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>คอร์สแนะนำ</h1><hr>
+    </div>
+    @foreach($suggest_course as $suggest_courses)
+    <div class="col-lg-3">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h5 class="card-title">{{$suggest_courses->course_name}}</h5>
+          <p class="card-text">ราคา: {{$suggest_courses->course_price}}</p>
+          <p class="card-text">คะแนน: {{$suggest_courses->course_rank}}</p>
+          <p class="card-text">จำนวนคนเรียน: {{$suggest_courses->course_max}}</p>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>หมวดหมู่งานยอดนิยม</h1><hr>
+    </div>
+    @foreach($show_category as $categorys)
+    <div class="col-lg-2">
+      <figure class="figure">
+        <img src="/assets/img/category/{{$categorys->category_img}}" class="figure-img img-fluid rounded category-suggest-img" alt="category_img">
+        <figcaption class="figure-caption">{{$categorys->category_name}}</figcaption>
+      </figure>
+    </div>
+    @endforeach
+  </div>
+</div>
 @endif
 @endsection

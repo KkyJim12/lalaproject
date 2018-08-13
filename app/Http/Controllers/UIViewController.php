@@ -13,6 +13,7 @@ class UIViewController extends Controller
     public function ShowIndex() {
       $category = Category::all();
       $slide = Slide::all();
+      $suggest_course = Course::where('course_suggest',1)->get();
       if ($slide->count() == 0) {
         $otherslide = null;
         $firstslide = null;
@@ -20,6 +21,7 @@ class UIViewController extends Controller
                               'show_category' => $category,
                               'otherslide' => $otherslide,
                               'firstslide' => $firstslide,
+                              'suggest_course' => $suggest_course,
                             ]);
 
       }
@@ -30,6 +32,7 @@ class UIViewController extends Controller
                               'show_category' => $category,
                               'firstslide' => $firstslide,
                               'otherslide' => $otherslide,
+                              'suggest_course' => $suggest_course,
                             ]);
       }
     }
@@ -137,10 +140,34 @@ class UIViewController extends Controller
     }
 
     public function ShowCourse($user_id)  {
+      $user = User::where('user_id',$user_id)->first();
+      $user2 = User::where('user_id',session('user_id'))->first();
+      $checkuser = User::where('user_id',$user_id)->get();
       $category = Category::all();
-      return view('pages.show-course',[
-                                          'show_category' => $category,
-                                        ]);
+      $checkcourse = Course::where('user_id',$user_id)->get();
+      $seecourse = Course::where('user_id',$user_id)->get();
+
+      if ($user_id == session('user_id')) {
+        return view('pages.show-course',[
+                                            'user' => $user2,
+                                            'show_category' => $category,
+                                            'course' => $seecourse,
+                                          ]);
+      }
+
+      elseif ($checkcourse->count() == 0 & $checkuser->count() == 0) {
+        abort(404);
+      }
+
+      else {
+        $course = User::find($user_id)->mycourse;
+        return view('pages.show-course-info',[
+                                            'user' => $user,
+                                            'show_category' => $category,
+                                            'course' => $seecourse,
+                                          ]);
+      }
+
     }
 
     public function ShowCreateCourse($user_id)  {
@@ -148,5 +175,27 @@ class UIViewController extends Controller
       return view('pages.create-course',[
                                           'show_category' => $category,
                                         ]);
+    }
+
+    public function ShowEditCourse($course_id)  {
+      $category = Category::all();
+      $course = Course::where('course_id',$course_id)->first();
+      $now_category = Category::where('category_id',$course->category_id)->first();
+      return view('pages.edit-course',[
+                                          'show_category' => $category,
+                                          'course' => $course,
+                                          'now_category' => $now_category,
+                                        ]);
+    }
+
+    public function ShowSeeCourse($course_id)  {
+      $mycourse = Course::find($course_id);
+      $category = Category::all();
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.course',[
+                                  'show_category' => $category,
+                                  'course' => $course,
+                                  'mycourse' => $mycourse,
+                                 ]);
     }
 }

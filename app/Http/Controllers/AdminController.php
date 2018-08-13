@@ -50,7 +50,7 @@ class AdminController extends Controller
 
       $validatedData = $request->validate([
         'category_name' => 'required|max:255',
-        'category_suggest' => 'required|max:255',
+        'category_suggest' => 'max:255',
         'category_img' => 'image|max:2048',
       ]);
 

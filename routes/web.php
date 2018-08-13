@@ -57,6 +57,14 @@ Route::get('/admin-edit-slide/{slide_id}','UIViewController@ShowAdminEditSlide')
 
 Route::post('/admin-edit-slide-process/{slide_id}','AdminController@AdminEditSlideProcess');
 
-Route::get('/show-course/{user_id}','UIViewController@ShowCourse');
+Route::get('/show-course/{user_id}','UIViewController@ShowCourse')->name('show-course');
 
 Route::get('/create-course/{user_id}','UIViewController@ShowCreateCourse');
+
+Route::post('/create-course-process','CourseController@CreateCourseProcess');
+
+Route::get('/edit-course/{course_id}','UIViewController@ShowEditCourse');
+
+Route::post('/edit-course-process/{course_id}','CourseController@EditCourseProcess');
+
+Route::get('/see-course/{course_id}','UIViewController@ShowSeeCourse');

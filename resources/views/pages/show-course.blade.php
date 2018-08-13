@@ -17,5 +17,26 @@
       <a class="btn btn-success" href="/create-course/{{session('user_id')}}">สร้างคอร์สเรียนใหม่</a>
     </div>
   </div>
+  <div class="row">
+    @foreach($course as $courses)
+    <a class="course-link" href="/see-course/{{$courses->course_id}}">
+      <div class="col-lg-4 mt-5">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h5 class="card-title">{{$courses->course_name}}</h5>
+          <p class="card-text">{{$courses->course_category->category_name}}</p>
+          <p class="card-text">ราคา: {{$courses->course_price}}</p>
+          <p class="card-text">{{$courses->course_start_date}} ถึง {{$courses->course_end_date}}</p>
+          <p class="card-text">หมดเขต: {{$courses->course_expire_date}}</p>
+          <p class="card-text">คะแนน: {{$courses->course_rank}}</p>
+          <p class="card-text">จำนวนคนเรียน: {{$courses->course_max}}</p>
+          <a class="btn btn-warning form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
+        </div>
+      </div>
+      </div>
+    </a>
+    @endforeach
+  </div>
 </div>
 @endsection

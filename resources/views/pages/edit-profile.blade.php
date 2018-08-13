@@ -35,15 +35,15 @@
         <form action="/edit-profile-process" method="post">
           <div class="form-group">
             <label for="edit_fname">ชื่อจริง</label>
-            <input id="edit_fname" class="form-control" type="text" name="user_fname" value="{{$myprofile->user_fname}}">
+            <input id="edit_fname" class="form-control" type="text" name="user_fname" value="{{$myprofile->user_fname}}" placeholder="กรุณาระบุชื่อจริง">
           </div>
           <div class="form-group">
             <label for="edit_lname">นามสกุล</label>
-            <input id="edit_lname" class="form-control" type="text" name="user_lname" value="{{$myprofile->user_lname}}">
+            <input id="edit_lname" class="form-control" type="text" name="user_lname" value="{{$myprofile->user_lname}}" placeholder="กรุณาระบุนามสกุล">
           </div>
           <div class="form-group">
             <label for="edit_email">อีเมลล์</label>
-            <input id="edit_email" class="form-control" type="text" name="user_email" value="{{$myprofile->user_email}}">
+            <input id="edit_email" class="form-control" type="text" name="user_email" value="{{$myprofile->user_email}}" placeholder="กรุณาระบุอีเมลล์">
           </div>
           <div class="form-group">
             <label for="edit_birthdate">วันเกิด</label>

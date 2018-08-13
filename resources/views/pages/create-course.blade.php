@@ -99,7 +99,7 @@
       </div>
       <div class="form-group col-lg-12">
         <label for="course_other_img">รูปภาพอื่นๆ</label>
-        <input type="file" class="form-control-file" id="course_other_img" name="course_other_img" multiple>
+        <input type="file" class="form-control-file" id="course_other_img" name="course_other_img[]" multiple>
       </div>
       <input type="hidden" name="user_id" value="{{session('user_id')}}">
       @csrf

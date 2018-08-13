@@ -1,6 +1,24 @@
-@extends('templates.master')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/dropzone.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="/assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/assets/js/custom.js" type="text/javascript"></script>
+    <script src="assets/js/dropzone.js"></script>
+  </head>
+  <body class="body-course">
+    @include('components.navbar')
+    @include('components.menu')
+    @yield('content')
+  </body>
+</html>
 <div class="container mt-3 mb-5">
   <div class="row">
     <div class="col-lg-12">
@@ -28,7 +46,7 @@
     </div>
   </div>
 </div>
-<div class="container mb-5">
+<div class="container mb-5" style="background-color:white;">
   <div class="row course-layout border">
     <div class="col-lg-3">
       <div class="card" style="width: 100%;">
@@ -72,4 +90,3 @@
     </div>
   </div>
 </div>
-@endsection

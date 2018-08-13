@@ -27,7 +27,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'required|image|max:2048',
-        'course_other_img' => 'required|image|max:2048',
+        'course_other_img' => 'required|max:2048',
       ]);
 
       $image = $request->file('course_img');
@@ -61,17 +61,20 @@ class CourseController extends Controller
       $course->course_sell = 0;
       $course->course_img = $img_name;
 
-      $input=$request->course_other_img;
-        $images=array();
-        if($files=$request->file('course_other_img')){
-            foreach($files as $file){
-                $name=$file->getClientOriginalName();
-                $file->move('course_other_img',$name);
-                $images[]=$name;
-            }
+      if($request->hasFile('course_other_img'))
+      {
+        $course_other_imgs = $request->file('course_other_img');
+        foreach ($course_other_imgs as $course_other_img) {
+          $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
+          $destinationPathOther = public_path('/assets/img/courseimg');
+          $course_other_img->move($destinationPathOther, $course_other_img_name);
         }
+    }
+      $course_other_imgs2 = $request->file('course_other_img');
+      $course_other_imgs2 = array();
+      $course->course_other_img = implode($course_other_imgs2);
 
-        $course->course_other_img = implode($images);
+
 
       $course->save();
 
@@ -99,7 +102,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'image|max:2048',
-        'course_other_img' => 'image|max:2048',
+        'course_other_img' => 'max:2048',
       ]);
 
       if (isset($request->course_img) & isset($request->course_other_img)) {
@@ -133,17 +136,17 @@ class CourseController extends Controller
         $course->course_detail = $request->course_detail;
         $course->course_img = $img_name;
 
-        $input=$request->course_other_img;
-          $images=array();
-          if($files=$request->file('course_other_img')){
-              foreach($files as $file){
-                  $name=$file->getClientOriginalName();
-                  $file->move('course_other_img',$name);
-                  $images[]=$name;
-              }
+        if($request->hasFile('course_other_img'))
+        {
+          $course_other_imgs = $request->file('course_other_img');
+          foreach ($course_other_imgs as $course_other_img) {
+            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
+            $destinationPathOther = public_path('/assets/img/courseimg');
+            $course_other_img->move($destinationPathOther, $course_other_img_name);
           }
+      }
 
-          $course->course_other_img = implode($images);
+        $course->course_other_img = implode($course_other_imgs);
 
         $course->save();
 

@@ -36,25 +36,14 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+@endif
 
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-12">
       <h1>คอร์สยอดนิยม</h1><hr>
     </div>
-    @foreach($suggest_course as $suggest_courses)
-    <div class="col-lg-3">
-      <div class="card" style="width:80%;">
-        <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
-        <div class="card-body">
-          <h5 class="card-title">{{$suggest_courses->course_name}}</h5>
-          <p class="card-text">ราคา: {{$suggest_courses->course_price}}</p>
-          <p class="card-text">คะแนน: {{$suggest_courses->course_rank}}</p>
-          <p class="card-text">จำนวนคนเรียน: {{$suggest_courses->course_max}}</p>
-        </div>
-      </div>
-    </div>
-    @endforeach
+
   </div>
 </div>
 
@@ -64,17 +53,27 @@
       <h1>คอร์สแนะนำ</h1><hr>
     </div>
     @foreach($suggest_course as $suggest_courses)
-    <div class="col-lg-3">
+
+      <div class="col-lg-4 mt-5">
+        <a class="course-link" href="/see-course/{{$suggest_courses->course_id}}">
       <div class="card" style="width:80%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
         <div class="card-body">
-          <h5 class="card-title">{{$suggest_courses->course_name}}</h5>
-          <p class="card-text">ราคา: {{$suggest_courses->course_price}}</p>
-          <p class="card-text">คะแนน: {{$suggest_courses->course_rank}}</p>
-          <p class="card-text">จำนวนคนเรียน: {{$suggest_courses->course_max}}</p>
+          <h2 class="card-title">{{$suggest_courses->course_name}}</h2><hr>
+          <h2 class="card-text">
+              <span class="badge badge-primary">฿ {{$suggest_courses->course_price}}</span>
+              <span class="badge badge-secondary" style="float:right;">
+
+                0/{{$suggest_courses->course_max}}
+
+              </span>
+          </h2>
+          <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($suggest_courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($suggest_courses->course_end_date))}}</small>
         </div>
       </div>
-    </div>
+      </a>
+      </div>
+
     @endforeach
   </div>
 </div>
@@ -85,7 +84,7 @@
       <h1>หมวดหมู่งานยอดนิยม</h1><hr>
     </div>
     @foreach($show_category as $categorys)
-    <div class="col-lg-2">
+    <div class="col-lg-3">
       <figure class="figure">
         <img src="/assets/img/category/{{$categorys->category_img}}" class="figure-img img-fluid rounded category-suggest-img" alt="category_img">
         <figcaption class="figure-caption">{{$categorys->category_name}}</figcaption>
@@ -94,5 +93,5 @@
     @endforeach
   </div>
 </div>
-@endif
+
 @endsection

@@ -18,21 +18,19 @@
   </div>
   <div class="row">
     @foreach($course as $courses)
-    <div class="col-lg-4 mt-5">
-      <a class="course-link" href="/see-course/{{$courses->course_id}}">
-        <div class="card" style="width:80%;">
-          <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
-          <div class="card-body">
-            <h5 class="card-title">{{$courses->course_name}}</h5>
-            <p class="card-text">{{$courses->course_category->category_name}}</p>
-            <p class="card-text">ราคา: {{$courses->course_price}}</p>
-            <p class="card-text">{{$courses->course_start_date}} ถึง {{$courses->course_end_date}}</p>
-            <p class="card-text">หมดเขต: {{$courses->course_expire_date}}</p>
-            <p class="card-text">คะแนน: {{$courses->course_rank}}</p>
-          </div>
+    <a class="course-link" href="/see-course/{{$courses->course_id}}">
+      <div class="col-lg-4 mt-5">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h2 class="card-title">{{$courses->course_name}}</h2><hr>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$courses->course_max}}</span></h2>
+          <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
+          <a class="btn btn-warning form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
         </div>
-      </a>
-    </div>
+      </div>
+      </div>
+    </a>
     @endforeach
   </div>
 </div>

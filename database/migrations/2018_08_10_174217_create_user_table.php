@@ -23,6 +23,7 @@ class CreateUserTable extends Migration
             $table->date('user_birthdate');
             $table->string('user_gender');
             $table->integer('user_admin')->nullable();
+            $table->integer('user_ban')->nullable();
             $table->timestamps();
         });
     }

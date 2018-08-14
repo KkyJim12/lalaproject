@@ -115,7 +115,6 @@ class CourseController extends Controller
         $image->move($destinationPath, $img_name);
 
         $course = Course::where('user_id',$request->user_id)->where('course_id',$request->course_id)->first();
-        $course->user_id = $request->user_id;
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
@@ -163,7 +162,6 @@ class CourseController extends Controller
         $image->move($destinationPath, $img_name);
 
         $course = Course::where('user_id',$request->user_id)->where('course_id',$request->course_id)->first();
-        $course->user_id = $request->user_id;
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
@@ -188,9 +186,47 @@ class CourseController extends Controller
         return redirect()->route('show-course',$request->user_id);
       }
 
+      elseif($request->course_other_img)  {
+
+        $course = Course::where('user_id',$request->user_id)->where('course_id',$request->course_id)->first();
+        $course->category_id = $request->category_id;
+        $course->course_name = $request->course_name;
+        $course->course_price = $request->course_price;
+        $course->course_max = $request->course_max;
+        $course->course_start_date = $request->course_start_date;
+        $course->course_end_date = $request->course_end_date;
+        $course->course_expire_date = $request->course_expire_date;
+        $course->course_teacher_name = $request->course_teacher_name;
+        $course->course_teacher_school = $request->course_teacher_school;
+        $course->course_teacher_college = $request->course_teacher_college;
+        $course->course_teacher_awards = $request->course_teacher_awards;
+        $course->course_teacher_skill = $request->course_teacher_skill;
+        $course->course_phone = $request->course_phone;
+        $course->course_line = $request->course_line;
+        $course->course_email = $request->course_email;
+        $course->course_website = $request->course_website;
+        $course->course_facebook = $request->course_facebook;
+        $course->course_detail = $request->course_detail;
+
+        if($request->hasFile('course_other_img'))
+        {
+          $course_other_imgs = $request->file('course_other_img');
+          foreach ($course_other_imgs as $course_other_img) {
+            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
+            $destinationPathOther = public_path('/assets/img/courseimg');
+            $course_other_img->move($destinationPathOther, $course_other_img_name);
+          }
+      }
+
+        $course->course_other_img = implode($course_other_imgs);
+
+        $course->save();
+
+        return redirect()->route('show-course',$request->user_id);
+      }
+
       else {
         $course = Course::where('user_id',$request->user_id)->where('course_id',$request->course_id)->first();
-        $course->user_id = $request->user_id;
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;

@@ -7,6 +7,7 @@ use App\User;
 use App\Category;
 use App\Slide;
 use App\Course;
+use App\Study;
 
 class UIViewController extends Controller
 {
@@ -116,8 +117,12 @@ class UIViewController extends Controller
 
     public function ShowCategory($category_id)  {
       $category = Category::all();
+      $that_category = Category::where('category_id',$category_id)->first();
+      $course_in_category = Course::where('category_id',$category_id)->get();
       return view('pages.category',[
+                                    'that_category' => $that_category,
                                     'show_category' => $category,
+                                    'course_in_category' => $course_in_category,
                                    ]);
     }
 
@@ -192,10 +197,103 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
+      $num_course = Course::find($course_id)->study()->count();
+      $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->first();
       return view('pages.course',[
                                   'show_category' => $category,
                                   'course' => $course,
                                   'mycourse' => $mycourse,
+                                  'num_course' => $num_course,
+                                  'already_join' => $already_join,
                                  ]);
+    }
+
+    public function ShowAdminCourse() {
+      $course = Course::all();
+      return view('pages.admin-course',[
+                                        'course' => $course,
+                                       ]);
+    }
+
+    public function ShowAdminEditCourse($course_id)  {
+      $category = Category::all();
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.admin-edit-course',[
+                                              'show_category' => $category,
+                                              'course' => $course,
+                                            ]);
+    }
+
+    public function ShowAdminSeeCourse($course_id)  {
+      $mycourse = Course::find($course_id);
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.admin-see-course',[
+                                            'course' => $course,
+                                            'mycourse' => $mycourse,
+                                           ]);
+    }
+
+    public function ShowAdminCourseBan() {
+      $course = Course::onlyTrashed()->get();
+      return view('pages.admin-course-ban',[
+                                            'course' => $course,
+                                           ]);
+    }
+
+    public function AdminSeeBanCourse($course_id) {
+      $mycourse = Course::onlyTrashed()->find($course_id);
+      $course = Course::where('course_id',$course_id)->onlyTrashed()->first();
+      return view('pages.admin-see-ban-course',[
+                                                'course' => $course,
+                                                'mycourse' => $mycourse,
+                                               ]);
+    }
+
+    public function ShowAdminCourseApprove()  {
+      $course = Course::where('course_approve',1)->get();
+      return view('pages.admin-course-approve',[
+                                                'course' => $course,
+                                               ]);
+    }
+
+    public function ShowAdminCourseNotApprove() {
+    $course = Course::where('course_approve',null)->where('course_reject',null)->get();
+      return view('pages.admin-course-not-approve',[
+                                                'course' => $course,
+                                               ]);
+    }
+
+    public function ShowAdminCourseReject() {
+    $course = Course::where('course_reject','!=',null)->get();
+      return view('pages.admin-course-reject',[
+                                                'course' => $course,
+                                               ]);
+    }
+
+    public function ShowAdminSeeCourseApprove($course_id) {
+      $mycourse = Course::find($course_id);
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.admin-see-course-approve',[
+                                                    'mycourse' => $mycourse,
+                                                    'course' => $course,
+                                                   ]);
+    }
+
+    public function ShowAdminSeeCourseNotApprove($course_id) {
+      $mycourse = Course::find($course_id);
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.admin-see-course-not-approve',[
+                                                    'mycourse' => $mycourse,
+                                                    'course' => $course,
+                                                   ]);
+    }
+
+    public function ShowAdminSeecourseReject($course_id)  {
+      $mycourse = Course::find($course_id);
+      $course = Course::where('course_id',$course_id)->first();
+      return view('pages.admin-see-course-reject',[
+                                                    'mycourse' => $mycourse,
+                                                    'course' => $course,
+                                                   ]);
     }
 }

@@ -15,8 +15,8 @@
   </head>
   <body style="background-color:gray;">
     @include('components.navbar')
-    <div class="container mt-5">
-      <div class="row justify-content-center">
+    <div class="mt-5">
+      <div class="row">
         <div class="col-lg-2">
           @include('components.admin-menu')
         </div>

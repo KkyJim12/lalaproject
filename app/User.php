@@ -14,4 +14,5 @@ class User extends Model
     {
         return $this->hasMany('App\Course','user_id','user_id');
     }
+
 }

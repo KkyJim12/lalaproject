@@ -48,6 +48,15 @@
 </div>
 <div class="container mb-5" style="background-color:white;">
   <div class="row course-layout border">
+    @if(session('error'))
+      <div class="col-lg-12">
+        <div class="alert alert-danger">
+          <ul>
+            <li>{{session('error')}}</li>
+          </ul>
+        </div>
+      </div>
+    @endif
     <div class="col-lg-3">
       <div class="card" style="width: 100%;">
         <img class="card-img-top course-detail-img" src="/assets/img/profile/{{$mycourse->myuser->user_img}}" alt="user_img">
@@ -80,11 +89,16 @@
 
       <div class="border mt-3 course-card">
         <h2>จำนวนคนเรียน</h2>
-        <h1>1/{{$course->course_max}}</h1>
+        <h1>{{$num_course}}/{{$course->course_max}}</h1>
         <h6>{{$course->course_rank}}</h6>
-        <form class="" action="index.html" method="post">
+        @if($already_join)
+          <button class="btn btn-danger form-control" disabled>คุณสมัครคอร์สนี้แล้ว</button>
+        @else
+        <form class="" action="/study-process/{{$course->course_id}}" method="post">
+          @csrf
           <button class="btn btn-success form-control" type="submit" name="button">สมัครเรียน</button>
         </form>
+        @endif
       </div>
 
     </div>

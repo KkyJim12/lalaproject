@@ -22,6 +22,7 @@ class CreateUserTable extends Migration
             $table->string('user_password');
             $table->date('user_birthdate');
             $table->string('user_gender');
+            $table->integer('course_qty_max');
             $table->integer('user_admin')->nullable();
             $table->integer('user_ban')->nullable();
             $table->timestamps();

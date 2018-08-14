@@ -43,6 +43,7 @@ class CourseController extends Controller
       $course->category_id = $request->category_id;
       $course->course_name = $request->course_name;
       $course->course_price = $request->course_price;
+      $course->course_now_joining = 0;
       $course->course_max = $request->course_max;
       $course->course_start_date = $request->course_start_date;
       $course->course_end_date = $request->course_end_date;

@@ -8,7 +8,7 @@
     </div>
     <div class="col-lg-12">
       <h5>จำนวนคอร์สเรียน</h5>
-      <h5>0/3</h5><hr>
+      <h5>{{$course_qty}}/{{$user->course_qty_max}}</h5><hr>
     </div>
     <div class="col-lg-10 mt-3">
       <h3>คอร์สเรียนทั้งหมด</h3>
@@ -26,7 +26,6 @@
           <h2 class="card-title">{{$courses->course_name}}</h2><hr>
           <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
-          <a class="btn btn-warning form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
         </div>
       </div>
       </div>

@@ -43,7 +43,29 @@
     <div class="col-lg-12">
       <h1>คอร์สยอดนิยม</h1><hr>
     </div>
+    @foreach($popular_course as $popular_courses)
 
+      <div class="col-lg-4 mt-5">
+        <a class="course-link" href="/see-course/{{$popular_courses->course_id}}">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$popular_courses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h2 class="card-title">{{$popular_courses->course_name}}</h2><hr>
+          <h2 class="card-text">
+              <span class="badge badge-primary">฿ {{$popular_courses->course_price}}</span>
+              <span class="badge badge-secondary" style="float:right;">
+
+                {{$popular_courses->course_now_joining}}/{{$popular_courses->course_max}}
+
+              </span>
+          </h2>
+          <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($popular_courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($popular_courses->course_end_date))}}</small>
+        </div>
+      </div>
+      </a>
+      </div>
+
+    @endforeach
   </div>
 </div>
 
@@ -64,7 +86,7 @@
               <span class="badge badge-primary">฿ {{$suggest_courses->course_price}}</span>
               <span class="badge badge-secondary" style="float:right;">
 
-                0/{{$suggest_courses->course_max}}
+                {{$suggest_courses->course_now_joining}}/{{$suggest_courses->course_max}}
 
               </span>
           </h2>
@@ -84,12 +106,14 @@
       <h1>หมวดหมู่งานยอดนิยม</h1><hr>
     </div>
     @foreach($show_category as $categorys)
-    <div class="col-lg-3">
-      <figure class="figure">
-        <img src="/assets/img/category/{{$categorys->category_img}}" class="figure-img img-fluid rounded category-suggest-img" alt="category_img">
-        <figcaption class="figure-caption">{{$categorys->category_name}}</figcaption>
-      </figure>
-    </div>
+      <div class="col-lg-3">
+        <a href="/category/{{$categorys->category_id}}">
+        <figure class="figure">
+          <img src="/assets/img/category/{{$categorys->category_img}}" class="figure-img img-fluid rounded category-suggest-img" alt="category_img">
+          <figcaption class="figure-caption">{{$categorys->category_name}}</figcaption>
+        </figure>
+        </a>
+      </div>
     @endforeach
   </div>
 </div>

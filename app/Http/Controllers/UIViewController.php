@@ -8,6 +8,7 @@ use App\Category;
 use App\Slide;
 use App\Course;
 use App\Study;
+use Carbon;
 
 class UIViewController extends Controller
 {
@@ -15,6 +16,7 @@ class UIViewController extends Controller
       $category = Category::all();
       $slide = Slide::all();
       $suggest_course = Course::where('course_suggest',1)->get();
+      $popular_course = Course::orderBy('course_now_joining','asc')->take(8)->get();
       if ($slide->count() == 0) {
         $otherslide = null;
         $firstslide = null;
@@ -23,6 +25,7 @@ class UIViewController extends Controller
                               'otherslide' => $otherslide,
                               'firstslide' => $firstslide,
                               'suggest_course' => $suggest_course,
+                              'popular_course' => $popular_course,
                             ]);
 
       }
@@ -151,12 +154,14 @@ class UIViewController extends Controller
       $category = Category::all();
       $checkcourse = Course::where('user_id',$user_id)->get();
       $seecourse = Course::where('user_id',$user_id)->get();
+      $course_qty = Course::where('user_id',$user_id)->count();
 
       if ($user_id == session('user_id')) {
         return view('pages.show-course',[
                                             'user' => $user2,
                                             'show_category' => $category,
                                             'course' => $seecourse,
+                                            'course_qty' => $course_qty,
                                           ]);
       }
 
@@ -170,6 +175,7 @@ class UIViewController extends Controller
                                             'user' => $user,
                                             'show_category' => $category,
                                             'course' => $seecourse,
+                                            'course_qty' => $course_qty,
                                           ]);
       }
 
@@ -198,6 +204,7 @@ class UIViewController extends Controller
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
       $num_course = Course::find($course_id)->study()->count();
+      $mytime = Carbon\Carbon::now();
       $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->first();
       return view('pages.course',[
                                   'show_category' => $category,
@@ -205,6 +212,7 @@ class UIViewController extends Controller
                                   'mycourse' => $mycourse,
                                   'num_course' => $num_course,
                                   'already_join' => $already_join,
+                                  'mytime' => $mytime,
                                  ]);
     }
 

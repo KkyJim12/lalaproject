@@ -106,3 +106,5 @@ Route::get('/admin-see-course-not-approve/{course_id}','UIViewController@ShowAdm
 Route::get('/admin-see-course-reject/{course_id}','UIViewController@ShowAdminSeeCourseReject');
 
 Route::post('/study-process/{course_id}','StudyController@StudyThisCourse');
+
+Route::post('/admin-suggest-course-process/{course_id}','AdminController@AdminSuggestCourseProcess');

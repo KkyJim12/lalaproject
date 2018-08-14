@@ -73,8 +73,8 @@
     <div class="col-lg-6">
       <h3>{{$course->course_name}}</h3><hr>
       <h5>ราคา {{$course->course_price}} บาท</h5>
-      <p>วันเรียน: {{$course->course_start_date}} - {{$course->course_end_date}}</p>
-      <p>สมัครได้ถึง: {{$course->course_expire_date}}</p><hr>
+      <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
+      <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
       <h3>รายละเอียดอื่นๆ</h3>
       <p>{{$course->course_detail}}</p>
     </div>
@@ -83,7 +83,7 @@
         <h3>ข้อมูลติดต่อ</h3>
         <p><i class="fas fa-phone"></i> {{$course->course_phone}}</p>
         <p><i class="fab fa-line"></i> {{$course->course_line}}</p>
-        <p><i class="fab fa-facebook-square"></i> {{$course->course_facebook}}</p>
+        <p><i class="fab fa-facebook-square"></i> <a href="{{$course->course_facebook}}">{{$mycourse->myuser->user_fname}} {{$mycourse->myuser->user_lname}}</a> </p>
         <p><i class="fab fa-internet-explorer"></i> <a href="{{$course->course_website}}">{{$course->course_website}}</a></p>
       </div>
 
@@ -91,7 +91,11 @@
         <h2>จำนวนคนเรียน</h2>
         <h1>{{$num_course}}/{{$course->course_max}}</h1>
         <h6>{{$course->course_rank}}</h6>
-        @if($already_join)
+        @if($mytime > $course->course_expire_date)
+          <button class="btn btn-danger form-control" disabled>หมดเขตรับสมัครแล้ว</button>
+        @elseif($course->course_max == $course->course_now_joining)
+          <button class="btn btn-danger form-control" disabled>คอร์สเต็มแล้ว</button>
+        @elseif($already_join)
           <button class="btn btn-danger form-control" disabled>คุณสมัครคอร์สนี้แล้ว</button>
         @else
         <form class="" action="/study-process/{{$course->course_id}}" method="post">

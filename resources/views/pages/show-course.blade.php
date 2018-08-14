@@ -8,7 +8,7 @@
     </div>
     <div class="col-lg-12">
       <h5>จำนวนคอร์สเรียนของฉัน</h5>
-      <h5>0/3</h5><hr>
+      <h5>{{$course_qty}}/{{$user->course_qty_max}}</h5><hr>
     </div>
     <div class="col-lg-10 mt-3">
       <h3>คอร์สเรียนทั้งหมด</h3>

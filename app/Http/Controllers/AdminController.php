@@ -432,7 +432,33 @@ class AdminController extends Controller
       else {
         return redirect()->back();
       }
+    }
 
+    public function AdminSuggestCourseProcess(Request $request) {
+      $course = Course::where('course_id',$request->course_id)->first();
+
+      if (isset($course->course_suggest)) {
+        $course->course_suggest = null;
+        $course->save();
+
+        if ($request->see | $request->edit) {
+          return redirect()->route('admin-course');
+        }
+        else {
+          return redirect()->back();
+        }
+      }
+      else {
+        $course->course_suggest = 1;
+        $course->save();
+
+        if ($request->see | $request->edit) {
+          return redirect()->route('admin-course');
+        }
+        else {
+          return redirect()->back();
+        }
+      }
 
     }
 }

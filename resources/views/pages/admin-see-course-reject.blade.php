@@ -46,8 +46,8 @@
     <div class="col-lg-6">
       <h3>{{$course->course_name}}</h3><hr>
       <h5>ราคา {{$course->course_price}} บาท</h5>
-      <p>วันเรียน: {{$course->course_start_date}} - {{$course->course_end_date}}</p>
-      <p>สมัครได้ถึง: {{$course->course_expire_date}}</p><hr>
+      <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
+      <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
       <h3>รายละเอียดอื่นๆ</h3>
       <p>{{$course->course_detail}}</p>
     </div>
@@ -56,13 +56,13 @@
         <h3>ข้อมูลติดต่อ</h3>
         <p><i class="fas fa-phone"></i> {{$course->course_phone}}</p>
         <p><i class="fab fa-line"></i> {{$course->course_line}}</p>
-        <p><i class="fab fa-facebook-square"></i> {{$course->course_facebook}}</p>
+      <p><i class="fab fa-facebook-square"></i> <a href="{{$course->course_facebook}}">{{$mycourse->myuser->user_fname}} {{$mycourse->myuser->user_lname}}</a> </p>
         <p><i class="fab fa-internet-explorer"></i> <a href="{{$course->course_website}}">{{$course->course_website}}</a></p>
       </div>
 
       <div class="border mt-3 course-card">
         <h2>จำนวนคนเรียน</h2>
-        <h1>1/{{$course->course_max}}</h1>
+        <h1>{{$course->course_now_joining}}/{{$course->course_max}}</h1>
         <h6>{{$course->course_rank}}</h6>
         <p>
           <form action="/admin-approve-course/{{$course->course_id}}" method="post">

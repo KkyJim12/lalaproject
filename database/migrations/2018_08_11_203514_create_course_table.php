@@ -32,6 +32,7 @@ class CreateCourseTable extends Migration
             $table->string('course_comment')->nullable();
             $table->integer('course_phone');
             $table->string('course_email');
+            $table->integer('course_now_joining');
             $table->integer('course_max');
             $table->string('course_website')->nullable();
             $table->string('course_line')->nullable();

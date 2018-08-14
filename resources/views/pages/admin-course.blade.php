@@ -44,6 +44,13 @@
           </div>
         </div>
         <div class="col-lg-10">
+          @if(session('error'))
+          <div class="alert alert-danger">
+              <ul>
+                {{session('error')}}
+              </ul>
+          </div>
+          @endif
           <div class="admin-category-show-box">
             <div class="justify-content-center">
               <div class="col-lg-12">
@@ -58,6 +65,7 @@
                       <th scope="col">Approve</th>
                       <th scope="col">Sell</th>
                       <th scope="col">แนะนำ</th>
+                      <th scope="col">แนะนำคอร์สนี้</th>
                       <th scope="col">แก้ไข</th>
                       <th scope="col">ลบ</th>
                       <th scope="col">แบน</th>
@@ -82,6 +90,21 @@
                         <td><p><i class="fas fa-check"></i></p></td>
                         @else
                         <td><p><i class="fas fa-times"></i></p></td>
+                        @endif
+                      </td>
+                      <td>
+                        @if($courses->course_suggest != null)
+                        <form action="/admin-suggest-course-process/{{$courses->course_id}}" method="post">
+                          <input type="hidden" name="course_id" value="{{$courses->course_id}}">
+                          @csrf
+                          <button class="btn btn-danger form-control" onclick="return confirm('คุณต้องการยกเลิกแนะนำคอร์สนี้จริงไหม?')" type="submit">ยกเลิกแนะนำ</button>
+                        </form>
+                        @else
+                        <form action="/admin-suggest-course-process/{{$courses->course_id}}" method="post">
+                          <input type="hidden" name="course_id" value="{{$courses->course_id}}">
+                          @csrf
+                          <button class="btn btn-success form-control" onclick="return confirm('คุณต้องการแนะนำคอร์สนี้จริงไหม?')" type="submit">แนะนำ</button>
+                        </form>
                         @endif
                       </td>
                       <td>

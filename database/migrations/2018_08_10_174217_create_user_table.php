@@ -15,6 +15,7 @@ class CreateUserTable extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->increments('user_id');
+            $table->string('google_id')->nullable();
             $table->string('user_img');
             $table->string('user_fname');
             $table->string('user_lname');
@@ -25,6 +26,7 @@ class CreateUserTable extends Migration
             $table->integer('course_qty_max');
             $table->integer('user_admin')->nullable();
             $table->integer('user_ban')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -304,4 +304,11 @@ class UIViewController extends Controller
                                                     'course' => $course,
                                                    ]);
     }
+
+    public function ShowAdminUser() {
+      $users = User::all();
+      return view('pages.admin-user',[
+                                      'users' => $users,
+                                     ]);
+    }
 }

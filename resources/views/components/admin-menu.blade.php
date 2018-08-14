@@ -23,3 +23,6 @@
   <div class="col-lg-12">
     <a class="btn btn-info form-control" href="/admin-course-reject">Course Reject</a>
   </div>
+  <div class="col-lg-12">
+    <a class="btn btn-info form-control" href="/admin-user">User</a>
+  </div>

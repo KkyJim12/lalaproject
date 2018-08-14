@@ -11,6 +11,16 @@
 |
 */
 
+Auth::routes();
+
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
+
+
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
+//////////////////////////////////////////////////////////////////////////////////
+
 Route::get('/','UIViewController@ShowIndex');
 
 Route::get('/register','UIViewController@ShowRegister');
@@ -108,3 +118,9 @@ Route::get('/admin-see-course-reject/{course_id}','UIViewController@ShowAdminSee
 Route::post('/study-process/{course_id}','StudyController@StudyThisCourse');
 
 Route::post('/admin-suggest-course-process/{course_id}','AdminController@AdminSuggestCourseProcess');
+
+Route::get('/admin-user','UIViewController@ShowAdminUser');
+
+Route::post('/admin-ban-user/{user_id}','AdminController@AdminBanUserProcess');
+
+Route::post('/admin-add-course-qty-process/{user_id}','AdminController@AdminAddCourseQtyProcess');

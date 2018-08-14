@@ -33,6 +33,7 @@
           @csrf
           <button class="btn btn-success form-control mt-2" type="submit">ล๊อกอิน</button>
         </form>
+        <a href="/redirect">test</a>
       </div>
     </div>
   </div>

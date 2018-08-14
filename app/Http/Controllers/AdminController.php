@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Slide;
 use App\Course;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -460,5 +461,30 @@ class AdminController extends Controller
         }
       }
 
+    }
+
+    public function AdminBanUserProcess(Request $request, $user_id) {
+
+      $user = User::where('user_id',$request->user_id)->first();
+
+      if ($user->user_admin == 1) {
+        return redirect()->back()->with('error','ไม่สามารถลบได้');
+      }
+
+      else {
+        $user = User::where('user_id',$request->user_id)->first();
+        $user->delete();
+
+        return redirect()->back();
+      }
+
+    }
+
+    public function AdminAddCourseQtyProcess(Request $request, $user_id)  {
+      $user = User::where('user_id',$request->user_id)->first();
+      $user->course_qty_max = $request->course_qty_max;
+      $user->save();
+
+      return redirect()->back();
     }
 }

@@ -18,8 +18,8 @@
   </div>
   <div class="row">
     @foreach($course as $courses)
-    <a class="course-link" href="/see-course/{{$courses->course_id}}">
-      <div class="col-lg-4 mt-5">
+    <div class="col-lg-4 mt-5">
+      <a class="course-link" href="/see-course/{{$courses->course_id}}">
       <div class="card" style="width:80%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
         <div class="card-body">
@@ -28,8 +28,9 @@
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
         </div>
       </div>
-      </div>
-    </a>
+      </a>
+    </div>
+
     @endforeach
   </div>
 </div>

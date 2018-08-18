@@ -33,6 +33,25 @@
       </div>
     </a>
     @endforeach
+  </div><hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>คอร์สที่ฉันสมัคร</h3>
+    </div>
+    @foreach($mycourse as $mycourses)
+    <div class="col-lg-4 mt-5">
+      <a class="course-link" href="/see-course/{{$mycourses->course_id}}">
+      <div class="card" style="width:80%;">
+        <img class="card-img-top course-img" src="/assets/img/course/{{$mycourses->course_img}}" alt="course_img">
+        <div class="card-body">
+          <h2 class="card-title">{{$mycourses->course_name}}</h2><hr>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$mycourses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$mycourses->course_max}}</span></h2>
+          <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($mycourses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($mycourses->course_end_date))}}</small>
+        </div>
+      </div>
+      </a>
+    </div>
+    @endforeach
   </div>
 </div>
 @endsection

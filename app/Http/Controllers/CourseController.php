@@ -16,6 +16,7 @@ class CourseController extends Controller
         'course_price' => 'required',
         'course_max' => 'required|numeric',
         'course_start_date' => 'required',
+        'course_place' => 'required|max:255',
         'course_end_date' => 'required',
         'course_expire_date' => 'required',
         'course_teacher_name' => 'required|max:255',
@@ -45,6 +46,7 @@ class CourseController extends Controller
       $course->course_price = $request->course_price;
       $course->course_now_joining = 0;
       $course->course_max = $request->course_max;
+      $course->course_place = $request->course_place;
       $course->course_start_date = $request->course_start_date;
       $course->course_end_date = $request->course_end_date;
       $course->course_expire_date = $request->course_expire_date;
@@ -59,7 +61,6 @@ class CourseController extends Controller
       $course->course_website = $request->course_website;
       $course->course_facebook = $request->course_facebook;
       $course->course_detail = $request->course_detail;
-      $course->course_sell = 0;
       $course->course_img = $img_name;
 
       if($request->hasFile('course_other_img'))
@@ -92,6 +93,7 @@ class CourseController extends Controller
         'course_price' => 'required',
         'course_max' => 'required|numeric',
         'course_start_date' => 'required',
+        'course_place' => 'required|max:255',
         'course_end_date' => 'required',
         'course_expire_date' => 'required',
         'course_teacher_name' => 'required|max:255',
@@ -119,6 +121,7 @@ class CourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -166,6 +169,7 @@ class CourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -193,6 +197,7 @@ class CourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -231,6 +236,7 @@ class CourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;

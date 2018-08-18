@@ -46,6 +46,7 @@
     <div class="col-lg-6">
       <h3>{{$course->course_name}}</h3><hr>
       <h5>ราคา {{$course->course_price}} บาท</h5>
+      <p>สถานที่เรียน: {{$course->course_place}}</p>
       <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
       <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
       <h3>รายละเอียดอื่นๆ</h3>

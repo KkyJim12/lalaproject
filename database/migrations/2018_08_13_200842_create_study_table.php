@@ -17,6 +17,7 @@ class CreateStudyTable extends Migration
             $table->increments('study_id');
             $table->integer('user_id');
             $table->integer('course_id');
+            $table->boolean('study_status')->nullable();
             $table->timestamps();
         });
     }

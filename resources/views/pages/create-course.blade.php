@@ -20,7 +20,7 @@
         <label for="course_name">ชื่อคอร์ส</label>
         <input type="text" class="form-control" id="course_name" name="course_name" placeholder="กรุณาตั้งชื่อคอร์ส">
       </div>
-      <div class="form-group col-lg-2">
+      <div class="form-group col-lg-3">
         <label for="course_category">หมวดหมู่</label>
         <select name="category_id" class="custom-select" id="course_category">
           <option>กรุณาเลือกหมวดหมู่</option>
@@ -29,11 +29,15 @@
           @endforeach
         </select>
       </div>
-      <div class="form-group col-lg-2">
+      <div class="form-group col-lg-3">
         <label for="course_price">ราคา</label>
         <input type="number" class="form-control" id="course_price" name="course_price" placeholder="กรุณาใส่ราคา">
       </div>
-      <div class="form-group col-lg-2">
+      <div class="form-group col-lg-8">
+        <label for="course_place">สถานที่เรียน</label>
+        <input type="text" class="form-control" id="course_place" name="course_place" placeholder="กรุณาใส่สถานที่เรียน">
+      </div>
+      <div class="form-group col-lg-4">
         <label for="course_max">จำนวนนักเรียนที่รับ</label>
         <input type="number" class="form-control" id="course_max" name="course_max" placeholder="กรุณาใส่จำนวนนักเรียนที่รับ">
       </div>

@@ -12,6 +12,7 @@
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
     <script src="assets/js/dropzone.js"></script>
+    <script src="https://cdn.omise.co/card.js" type="text/javascript"></script>
   </head>
   <body class="body-course">
     @include('components.navbar')
@@ -48,11 +49,31 @@
 </div>
 <div class="container mb-5" style="background-color:white;">
   <div class="row course-layout border">
+    @if ($errors->any())
+    <div class="col-lg-12">
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    </div>
+    @endif
     @if(session('error'))
       <div class="col-lg-12">
         <div class="alert alert-danger">
           <ul>
             <li>{{session('error')}}</li>
+          </ul>
+        </div>
+      </div>
+    @endif
+    @if(session('success'))
+      <div class="col-lg-12">
+        <div class="alert alert-success">
+          <ul>
+            <li>{{session('success')}}</li>
           </ul>
         </div>
       </div>
@@ -73,6 +94,7 @@
     <div class="col-lg-6">
       <h3>{{$course->course_name}}</h3><hr>
       <h5>ราคา {{$course->course_price}} บาท</h5>
+      <p>สถานที่เรียน: {{$course->course_place}}</p>
       <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
       <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
       <h3>รายละเอียดอื่นๆ</h3>
@@ -91,20 +113,64 @@
         <h2>จำนวนคนเรียน</h2>
         <h1>{{$num_course}}/{{$course->course_max}}</h1>
         <h6>{{$course->course_rank}}</h6>
-        @if($mytime > $course->course_expire_date)
+        @if(session('user_log') == null)
+        <a href="/login"><button class="btn btn-success form-control">ล๊อกอินเพื่อสมัครเรียน</button></a>  
+        @elseif($mytime > $course->course_expire_date)
           <button class="btn btn-danger form-control" disabled>หมดเขตรับสมัครแล้ว</button>
+        @elseif($course_transfer)
+        <div class="form-group">
+          <label for="upload_slip">อัพโหลดหลักฐาน</label>
+          <form class="" action="/upload-slip" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="course_id" value="{{$course->course_id}}">
+            <input type="hidden" name="course_name" value="{{$course->course_name}}">
+            <input type="hidden" name="course_price" value="{{$course->course_price}}">
+            <input id="upload_slip" class="" type="file" name="course_transfer" placeholder="upload หลักฐาน">
+            @csrf
+            <button class="btn btn-success form-control mt-3" type="submit">อัพโหลด</button>
+          </form>
+        </div>
+        <form action="/change-transfer-method/{{$course->course_id}}" method="post">
+          <input type="hidden" name="course_id" value="{{$course->course_id}}">
+          @csrf
+          <button class="btn btn-danger form-control" type="submit" name="button">ยกเลิก</button>
+        </form>
+        @elseif($transfer_upload)
+        <form action="/change-transfer-method/{{$course->course_id}}" method="post">
+          <label for="upload_cancle">กำลังตรวจสอบ...</label>
+          <input type="hidden" id="upload_cancle" name="course_id" value="{{$course->course_id}}">
+          @csrf
+          <button class="btn btn-danger form-control" type="submit" name="button">ยกเลิก</button>
+        </form>
         @elseif($course->course_max == $course->course_now_joining)
           <button class="btn btn-danger form-control" disabled>คอร์สเต็มแล้ว</button>
         @elseif($already_join)
           <button class="btn btn-danger form-control" disabled>คุณสมัครคอร์สนี้แล้ว</button>
         @else
-        <form class="" action="/study-process/{{$course->course_id}}" method="post">
+        <form class="" action="/transfer-study-process/{{$course->course_id}}" method="post">
+          <input type="hidden" name="course_id" value="{{$course->course_id}}">
           @csrf
-          <button class="btn btn-success form-control" type="submit" name="button">สมัครเรียน</button>
+          <button class="btn btn-success form-control" type="submit" name="button">โอนเงินค่าสมัคร</button>
+        </form>
+
+        <form class="checkout-form mt-2" name="checkoutForm" method="POST" action="/omise-checkout">
+          @csrf
+          <input type="hidden" name="course_description" value="{{$course->course_name}}" />
+          <input type="hidden" name="course_price" value="{{$course->course_price}}00">
+          <input type="hidden" name="course_id" value="{{$course->course_id}}">
+          <script type="text/javascript" src="https://cdn.omise.co/card.js"
+            data-key="pkey_test_5cxodoewdmtrmj4j1g4"
+            data-image="PATH_TO_LOGO_IMAGE"
+            data-frame-label="www.Bestskill.co"
+            data-button-label="จ่ายบัตรเครดิต/เดบิต"
+            data-submit-label="ยืนยันการชำระเงิน"
+            data-amount= "{{$course->course_price}}00"
+            data-currency="thb"
+            >
+          </script>
+      <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
         </form>
         @endif
       </div>
-
     </div>
   </div>
 </div>

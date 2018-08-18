@@ -5,10 +5,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-      <form class="form-inline">
+      <form class="form-inline" method="get" action="/search-data">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="ค้นหา">
+          <input type="text" name="search_data" class="form-control" placeholder="ค้นหา">
             <div class="input-group-prepend">
+              @csrf
               <button class="btn btn-success" type="submit" name="button"><i class="fas fa-search"></i></button>
             </div>
         </div>

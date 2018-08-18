@@ -26,3 +26,6 @@
   <div class="col-lg-12">
     <a class="btn btn-info form-control" href="/admin-user">User</a>
   </div>
+  <div class="col-lg-12">
+    <a class="btn btn-info form-control" href="/admin-transfer">Transfer</a>
+  </div>

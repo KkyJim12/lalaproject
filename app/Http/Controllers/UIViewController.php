@@ -8,6 +8,7 @@ use App\Category;
 use App\Slide;
 use App\Course;
 use App\Study;
+use App\Transfer;
 use Carbon;
 
 class UIViewController extends Controller
@@ -39,6 +40,17 @@ class UIViewController extends Controller
                               'suggest_course' => $suggest_course,
                             ]);
       }
+    }
+
+    public function ShowSearchResult(Request $request)  {
+      $search_data = $request->search_data;
+      $category = Category::all();
+      $search_result = Course::where('course_name','Like','%'.$request->search_data.'%')->orWhere('course_place','Like','%'.$request->search_data.'%')->paginate(40);
+      return view('pages.search-result',[
+                                        'search_result' => $search_result,
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                        ]);
     }
 
     public function ShowRegister()  {
@@ -121,12 +133,18 @@ class UIViewController extends Controller
     public function ShowCategory($category_id)  {
       $category = Category::all();
       $that_category = Category::where('category_id',$category_id)->first();
-      $course_in_category = Course::where('category_id',$category_id)->get();
-      return view('pages.category',[
-                                    'that_category' => $that_category,
-                                    'show_category' => $category,
-                                    'course_in_category' => $course_in_category,
-                                   ]);
+      $course_in_category = Course::where('category_id',$category_id)->paginate(40);
+      if ($that_category == null) {
+        abort(404);
+      }
+      else {
+        return view('pages.category',[
+                                      'that_category' => $that_category,
+                                      'show_category' => $category,
+                                      'course_in_category' => $course_in_category,
+                                     ]);
+      }
+
     }
 
     public function ShowAdminSlide()  {
@@ -155,13 +173,14 @@ class UIViewController extends Controller
       $checkcourse = Course::where('user_id',$user_id)->get();
       $seecourse = Course::where('user_id',$user_id)->get();
       $course_qty = Course::where('user_id',$user_id)->count();
-
+      $mycourse = Course::where('user_id',$user_id)->get();
       if ($user_id == session('user_id')) {
         return view('pages.show-course',[
                                             'user' => $user2,
                                             'show_category' => $category,
                                             'course' => $seecourse,
                                             'course_qty' => $course_qty,
+                                            'mycourse' => $mycourse,
                                           ]);
       }
 
@@ -203,17 +222,27 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
-      $num_course = Course::find($course_id)->study()->count();
       $mytime = Carbon\Carbon::now();
       $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->first();
-      return view('pages.course',[
-                                  'show_category' => $category,
-                                  'course' => $course,
-                                  'mycourse' => $mycourse,
-                                  'num_course' => $num_course,
-                                  'already_join' => $already_join,
-                                  'mytime' => $mytime,
-                                 ]);
+      $course_transfer =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',false)->first();
+      $transfer_upload =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',true)->first();
+      if ($course == null) {
+        abort(404);
+      }
+      else {
+        $num_course = Course::find($course_id)->study()->count();
+        return view('pages.course',[
+                                    'show_category' => $category,
+                                    'course' => $course,
+                                    'mycourse' => $mycourse,
+                                    'num_course' => $num_course,
+                                    'already_join' => $already_join,
+                                    'mytime' => $mytime,
+                                    'course_transfer' => $course_transfer,
+                                    'transfer_upload' => $transfer_upload,
+                                   ]);
+      }
+
     }
 
     public function ShowAdminCourse() {
@@ -310,5 +339,19 @@ class UIViewController extends Controller
       return view('pages.admin-user',[
                                       'users' => $users,
                                      ]);
+    }
+
+    public function ShowAdminTransfer() {
+      $transfer = Transfer::where('transfer_accept',null)->get();
+      return view('pages.admin-transfer',[
+                                          'transfer' => $transfer,
+                                         ]);
+    }
+
+    public function ShowAdminSeeTransfer($transfer_id)  {
+      $transfer = Transfer::where('transfer_id',$transfer_id)->first();
+      return view('pages.admin-see-transfer',[
+                                              'transfer' => $transfer,
+                                             ]);
     }
 }

@@ -21,6 +21,13 @@
                 </ul>
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                <ul>
+                  {{session('error')}}
+                </ul>
+            </div>
+        @endif
         <form action="/login-process" method="post">
           <div class="form-group">
             <label for="register_email">อีเมลล์</label>
@@ -33,7 +40,8 @@
           @csrf
           <button class="btn btn-success form-control mt-2" type="submit">ล๊อกอิน</button>
         </form>
-        <a href="/redirect">test</a>
+        <a href="/google/redirect"><div class="g-signin2" data-onsuccess="onSignIn"></div></a>
+        <a href="/facebook/redirect">facebook login</a>
       </div>
     </div>
   </div>

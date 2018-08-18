@@ -22,7 +22,8 @@ class CreateCourseTable extends Migration
             $table->date('course_start_date');
             $table->date('course_end_date');
             $table->date('course_expire_date');
-            $table->float('course_price');
+            $table->integer('course_price');
+            $table->string('course_place');
             $table->longText('course_detail')->nullable();
             $table->string('course_teacher_name');
             $table->string('course_teacher_school');
@@ -30,7 +31,7 @@ class CreateCourseTable extends Migration
             $table->string('course_teacher_awards')->nullable();
             $table->string('course_teacher_skill');
             $table->string('course_comment')->nullable();
-            $table->integer('course_phone');
+            $table->string('course_phone');
             $table->string('course_email');
             $table->integer('course_now_joining');
             $table->integer('course_max');
@@ -42,7 +43,6 @@ class CreateCourseTable extends Migration
             $table->integer('course_ban')->nullable();
             $table->integer('course_suggest')->nullable();
             $table->longText('course_reject')->nullable();
-            $table->integer('course_sell');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -177,6 +177,7 @@ class AdminController extends Controller
         'category_id' => 'required|numeric|max:255',
         'course_name' => 'required|max:255',
         'course_price' => 'required',
+        'course_place' => 'required|max:255',
         'course_max' => 'required|numeric',
         'course_start_date' => 'required',
         'course_end_date' => 'required',
@@ -206,6 +207,7 @@ class AdminController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -258,6 +260,7 @@ class AdminController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -289,6 +292,7 @@ class AdminController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;
@@ -332,6 +336,7 @@ class AdminController extends Controller
         $course->category_id = $request->category_id;
         $course->course_name = $request->course_name;
         $course->course_price = $request->course_price;
+        $course->course_place = $request->course_place;
         $course->course_max = $request->course_max;
         $course->course_start_date = $request->course_start_date;
         $course->course_end_date = $request->course_end_date;

@@ -12,6 +12,7 @@
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
     <script src="/assets/js/dropzone.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body style="background-color:gray;">
     @include('components.navbar')

@@ -29,11 +29,13 @@
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100 course-slide" src="/assets/img/slide/slide.jpg" alt="First slide">
+            <img class="d-block w-100 course-slide" src="/assets/img/course/{{$course->course_img}}" alt="slide">
           </div>
+          @foreach($courseloop as $courses)
           <div class="carousel-item">
-            <img class="d-block w-100 course-slide" src="/assets/img/slide/slide2.jpg" alt="First slide">
+            <img class="d-block w-100 course-slide" src="/assets/img/courseimg/{{$courses->course_other_img_img}}" alt="slide">
           </div>
+          @endforeach
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -114,7 +116,7 @@
         <h1>{{$num_course}}/{{$course->course_max}}</h1>
         <h6>{{$course->course_rank}}</h6>
         @if(session('user_log') == null)
-        <a href="/login"><button class="btn btn-success form-control">ล๊อกอินเพื่อสมัครเรียน</button></a>  
+        <a href="/login"><button class="btn btn-success form-control">ล๊อกอินเพื่อสมัครเรียน</button></a>
         @elseif($mytime > $course->course_expire_date)
           <button class="btn btn-danger form-control" disabled>หมดเขตรับสมัครแล้ว</button>
         @elseif($course_transfer)

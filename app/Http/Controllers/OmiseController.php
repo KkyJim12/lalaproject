@@ -11,13 +11,15 @@ class OmiseController extends Controller
 
   public function OmiseCheckout(Request $request) {
 
+    $course_price = Course::where('course_id',$request->course_id)->first();
+
     define('OMISE_PUBLIC_KEY', 'pkey_test_5cxodoewdmtrmj4j1g4');
     define('OMISE_SECRET_KEY', 'skey_test_5cxodoewlzrw2k4dxlg');
     define('OMISE_API_VERSION', '2017-11-02');
 
     $charge = \OmiseCharge::create(array(
       'card' => $request->omiseToken,
-      'amount' => $request->course_price,
+      'amount' => $course_price->course_price.'00',
       'currency' => 'thb',
       'description' => $request->coures_description,
     ));

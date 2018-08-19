@@ -111,5 +111,15 @@
       <button class="btn btn-success form-control mt-2 mb-5" type="submit">สร้างคอร์สเรียน</button>
     </form>
   </div>
+  <hr>
+  <h3>รูปอื่นๆ</h3>
+  <div class="row mb-5">
+    @foreach($course_other_img as $course_other_imgs)
+    <div class="col-lg-2">
+      <img src="/assets/img/courseimg/{{$course_other_imgs->course_other_img_img}}"  style="width:100%; height:150px;">
+      <a class="btn btn-danger form-control" href="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}">ลบ</a>
+    </div>
+    @endforeach
+  </div>
 </div>
 @endsection

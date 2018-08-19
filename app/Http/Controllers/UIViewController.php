@@ -10,14 +10,16 @@ use App\Course;
 use App\Study;
 use App\Transfer;
 use Carbon;
+use App\CourseOtherImg;
 
 class UIViewController extends Controller
 {
     public function ShowIndex() {
       $category = Category::all();
       $slide = Slide::all();
-      $suggest_course = Course::where('course_suggest',1)->get();
-      $popular_course = Course::orderBy('course_now_joining','asc')->take(8)->get();
+      $mytime = Carbon\Carbon::now();
+      $suggest_course = Course::where('course_suggest',1)->where('course_expire_date','>',$mytime)->get();
+      $popular_course = Course::where('course_expire_date','>',$mytime)->orderBy('course_now_joining','asc')->take(8)->get();
       if ($slide->count() == 0) {
         $otherslide = null;
         $firstslide = null;
@@ -45,7 +47,8 @@ class UIViewController extends Controller
     public function ShowSearchResult(Request $request)  {
       $search_data = $request->search_data;
       $category = Category::all();
-      $search_result = Course::where('course_name','Like','%'.$request->search_data.'%')->orWhere('course_place','Like','%'.$request->search_data.'%')->paginate(40);
+      $mytime = Carbon\Carbon::now();
+      $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$request->search_data.'%')->orWhere('course_place','Like','%'.$request->search_data.'%')->paginate(40);
       return view('pages.search-result',[
                                         'search_result' => $search_result,
                                         'show_category' => $category,
@@ -132,8 +135,9 @@ class UIViewController extends Controller
 
     public function ShowCategory($category_id)  {
       $category = Category::all();
+      $mytime = Carbon\Carbon::now();
       $that_category = Category::where('category_id',$category_id)->first();
-      $course_in_category = Course::where('category_id',$category_id)->paginate(40);
+      $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->paginate(40);
       if ($that_category == null) {
         abort(404);
       }
@@ -173,7 +177,8 @@ class UIViewController extends Controller
       $checkcourse = Course::where('user_id',$user_id)->get();
       $seecourse = Course::where('user_id',$user_id)->get();
       $course_qty = Course::where('user_id',$user_id)->count();
-      $mycourse = Course::where('user_id',$user_id)->get();
+      $mycourse = Study::where('user_id',$user_id)->get();
+
       if ($user_id == session('user_id')) {
         return view('pages.show-course',[
                                             'user' => $user2,
@@ -211,10 +216,12 @@ class UIViewController extends Controller
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
       $now_category = Category::where('category_id',$course->category_id)->first();
+      $course_other_img = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.edit-course',[
                                           'show_category' => $category,
                                           'course' => $course,
                                           'now_category' => $now_category,
+                                          'course_other_img' => $course_other_img,
                                         ]);
     }
 
@@ -222,6 +229,7 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       $mytime = Carbon\Carbon::now();
       $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->first();
       $course_transfer =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',false)->first();
@@ -240,6 +248,7 @@ class UIViewController extends Controller
                                     'mytime' => $mytime,
                                     'course_transfer' => $course_transfer,
                                     'transfer_upload' => $transfer_upload,
+                                    'courseloop' => $courseloop,
                                    ]);
       }
 
@@ -255,18 +264,22 @@ class UIViewController extends Controller
     public function ShowAdminEditCourse($course_id)  {
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
+      $course_other_img = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-edit-course',[
                                               'show_category' => $category,
                                               'course' => $course,
+                                              'course_other_img' => $course_other_img,
                                             ]);
     }
 
     public function ShowAdminSeeCourse($course_id)  {
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-see-course',[
                                             'course' => $course,
                                             'mycourse' => $mycourse,
+                                            'courseloop' => $courseloop,
                                            ]);
     }
 
@@ -280,9 +293,11 @@ class UIViewController extends Controller
     public function AdminSeeBanCourse($course_id) {
       $mycourse = Course::onlyTrashed()->find($course_id);
       $course = Course::where('course_id',$course_id)->onlyTrashed()->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-see-ban-course',[
                                                 'course' => $course,
                                                 'mycourse' => $mycourse,
+                                                'courseloop' => $courseloop,
                                                ]);
     }
 
@@ -310,27 +325,33 @@ class UIViewController extends Controller
     public function ShowAdminSeeCourseApprove($course_id) {
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-see-course-approve',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
+                                                    'courseloop' => $courseloop,
                                                    ]);
     }
 
     public function ShowAdminSeeCourseNotApprove($course_id) {
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-see-course-not-approve',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
+                                                    'courseloop' => $courseloop,
                                                    ]);
     }
 
     public function ShowAdminSeecourseReject($course_id)  {
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
+      $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       return view('pages.admin-see-course-reject',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
+                                                    'courseloop' => $courseloop,
                                                    ]);
     }
 

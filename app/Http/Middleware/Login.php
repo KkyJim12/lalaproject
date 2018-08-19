@@ -16,7 +16,7 @@ class Login
     public function handle($request, Closure $next)
     {
 
-        if (session('uesr_log') == null) {
+        if (session('user_log') == null) {
           return redirect()->route('login')->with('error','กรุณาล๊อกอินก่อน');
         }
 

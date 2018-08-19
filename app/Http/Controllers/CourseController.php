@@ -9,7 +9,7 @@ use App\CourseOtherImg;
 class CourseController extends Controller
 {
     public function CreateCourseProcess(Request $request) {
-
+      
       $validatedData = $request->validate([
         'category_id' => 'required|numeric|max:255',
         'course_name' => 'required|max:255',
@@ -62,23 +62,31 @@ class CourseController extends Controller
       $course->course_facebook = $request->course_facebook;
       $course->course_detail = $request->course_detail;
       $course->course_img = $img_name;
-
-      if($request->hasFile('course_other_img'))
-      {
-        $course_other_imgs = $request->file('course_other_img');
-        foreach ($course_other_imgs as $course_other_img) {
-          $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
-          $destinationPathOther = public_path('/assets/img/courseimg');
-          $course_other_img->move($destinationPathOther, $course_other_img_name);
-        }
-    }
-      $course_other_imgs2 = $request->file('course_other_img');
-      $course_other_imgs2 = array();
-      $course->course_other_img = implode($course_other_imgs2);
-
-
-
       $course->save();
+
+
+      if($request->hasfile('course_other_img'))
+         {
+
+            foreach($request->file('course_other_img') as $file)
+            {
+                $name=$file->getClientOriginalName();
+                $destinationPathOther = public_path('/assets/img/courseimg');
+                $file->move($destinationPathOther, $name);
+                $data[] = $name;
+            }
+         }
+
+
+      foreach($data as $loop) {
+        $courseImg = new CourseOtherImg;
+        $courseImg->course_id = $course->course_id;
+        $courseImg->course_other_img_img = $loop;
+        $courseImg->save();
+      }
+
+
+
 
       return redirect()->route('show-course',$request->user_id);
 
@@ -138,20 +146,29 @@ class CourseController extends Controller
         $course->course_facebook = $request->course_facebook;
         $course->course_detail = $request->course_detail;
         $course->course_img = $img_name;
-
-        if($request->hasFile('course_other_img'))
-        {
-          $course_other_imgs = $request->file('course_other_img');
-          foreach ($course_other_imgs as $course_other_img) {
-            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
-            $destinationPathOther = public_path('/assets/img/courseimg');
-            $course_other_img->move($destinationPathOther, $course_other_img_name);
-          }
-      }
-
-        $course->course_other_img = implode($course_other_imgs);
-
         $course->save();
+
+        if($request->hasfile('course_other_img'))
+           {
+
+              foreach($request->file('course_other_img') as $file)
+              {
+                  $name=$file->getClientOriginalName();
+                  $destinationPathOther = public_path('/assets/img/courseimg');
+                  $file->move($destinationPathOther, $name);
+                  $data[] = $name;
+              }
+           }
+
+
+        foreach($data as $loop) {
+          $courseImg = new CourseOtherImg;
+          $courseImg->course_id = $course->course_id;
+          $courseImg->course_other_img_img = $loop;
+          $courseImg->save();
+        }
+
+
 
         return redirect()->route('show-course',$request->user_id);
       }
@@ -213,20 +230,29 @@ class CourseController extends Controller
         $course->course_website = $request->course_website;
         $course->course_facebook = $request->course_facebook;
         $course->course_detail = $request->course_detail;
-
-        if($request->hasFile('course_other_img'))
-        {
-          $course_other_imgs = $request->file('course_other_img');
-          foreach ($course_other_imgs as $course_other_img) {
-            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
-            $destinationPathOther = public_path('/assets/img/courseimg');
-            $course_other_img->move($destinationPathOther, $course_other_img_name);
-          }
-      }
-
-        $course->course_other_img = implode($course_other_imgs);
-
         $course->save();
+
+        if($request->hasfile('course_other_img'))
+           {
+
+              foreach($request->file('course_other_img') as $file)
+              {
+                  $name=$file->getClientOriginalName();
+                  $destinationPathOther = public_path('/assets/img/courseimg');
+                  $file->move($destinationPathOther, $name);
+                  $data[] = $name;
+              }
+           }
+
+
+        foreach($data as $loop) {
+          $courseImg = new CourseOtherImg;
+          $courseImg->course_id = $course->course_id;
+          $courseImg->course_other_img_img = $loop;
+          $courseImg->save();
+        }
+
+
 
         return redirect()->route('show-course',$request->user_id);
       }
@@ -257,5 +283,11 @@ class CourseController extends Controller
         return redirect()->route('show-course',$request->user_id);
       }
 
+    }
+
+    public function DelteCourseOtherImgProcess($course_other_img_id)  {
+      $course = CourseOtherImg::where('course_other_img_id',$course_other_img_id)->first();
+      $course->delete();
+      return redirect()->back();
     }
 }

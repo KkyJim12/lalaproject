@@ -30,4 +30,9 @@ class Course extends Model
     {
         return $this->belongsToMany('App\User','study','course_id','user_id');
     }
+
+    public function course_other_img()
+    {
+        return $this->hasMany('App\CourseOtherImg','course_other_img_id','course_id');
+    }
 }

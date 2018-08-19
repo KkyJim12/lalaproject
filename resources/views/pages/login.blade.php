@@ -39,9 +39,15 @@
           </div>
           @csrf
           <button class="btn btn-success form-control mt-2" type="submit">ล๊อกอิน</button>
-        </form>
-        <a href="/google/redirect"><div class="g-signin2" data-onsuccess="onSignIn"></div></a>
-        <a href="/facebook/redirect">facebook login</a>
+        </form><hr>
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <a href="/google/redirect" class="btn btn-block btn-social btn-google form-control"><i class="fab fa-google"></i>Google Login</a>
+          </div>
+          <div class="col-md-4">
+            <a href="/facebook/redirect" class="btn btn-block btn-social btn-facebook form-control"><i class="fab fa-facebook"></i>Facebook Login</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

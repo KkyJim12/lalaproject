@@ -224,20 +224,29 @@ class AdminController extends Controller
         $course->course_facebook = $request->course_facebook;
         $course->course_detail = $request->course_detail;
         $course->course_img = $img_name;
-
-        if($request->hasFile('course_other_img'))
-        {
-          $course_other_imgs = $request->file('course_other_img');
-          foreach ($course_other_imgs as $course_other_img) {
-            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
-            $destinationPathOther = public_path('/assets/img/courseimg');
-            $course_other_img->move($destinationPathOther, $course_other_img_name);
-          }
-      }
-
-        $course->course_other_img = implode($course_other_imgs);
-
         $course->save();
+
+        if($request->hasfile('course_other_img'))
+           {
+
+              foreach($request->file('course_other_img') as $file)
+              {
+                  $name=$file->getClientOriginalName();
+                  $destinationPathOther = public_path('/assets/img/courseimg');
+                  $file->move($destinationPathOther, $name);
+                  $data[] = $name;
+              }
+           }
+
+
+        foreach($data as $loop) {
+          $courseImg = new CourseOtherImg;
+          $courseImg->course_id = $course->course_id;
+          $courseImg->course_other_img_img = $loop;
+          $courseImg->save();
+        }
+
+
 
         if ($request->see | $request->edit) {
           return redirect()->route('admin-course');
@@ -308,20 +317,29 @@ class AdminController extends Controller
         $course->course_website = $request->course_website;
         $course->course_facebook = $request->course_facebook;
         $course->course_detail = $request->course_detail;
-
-        if($request->hasFile('course_other_img'))
-        {
-          $course_other_imgs = $request->file('course_other_img');
-          foreach ($course_other_imgs as $course_other_img) {
-            $course_other_img_name = uniqid().'.'.$course_other_img->getClientOriginalExtension();
-            $destinationPathOther = public_path('/assets/img/courseimg');
-            $course_other_img->move($destinationPathOther, $course_other_img_name);
-          }
-      }
-
-        $course->course_other_img = implode($course_other_imgs);
-
         $course->save();
+
+        if($request->hasfile('course_other_img'))
+           {
+
+              foreach($request->file('course_other_img') as $file)
+              {
+                  $name=$file->getClientOriginalName();
+                  $destinationPathOther = public_path('/assets/img/courseimg');
+                  $file->move($destinationPathOther, $name);
+                  $data[] = $name;
+              }
+           }
+
+
+        foreach($data as $loop) {
+          $courseImg = new CourseOtherImg;
+          $courseImg->course_id = $course->course_id;
+          $courseImg->course_other_img_img = $loop;
+          $courseImg->save();
+        }
+
+
 
         if ($request->see | $request->edit) {
           return redirect()->route('admin-course');

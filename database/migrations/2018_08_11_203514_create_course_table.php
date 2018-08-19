@@ -30,7 +30,6 @@ class CreateCourseTable extends Migration
             $table->string('course_teacher_college');
             $table->string('course_teacher_awards')->nullable();
             $table->string('course_teacher_skill');
-            $table->string('course_comment')->nullable();
             $table->string('course_phone');
             $table->string('course_email');
             $table->integer('course_now_joining');
@@ -38,7 +37,6 @@ class CreateCourseTable extends Migration
             $table->string('course_website')->nullable();
             $table->string('course_line')->nullable();
             $table->string('course_facebook')->nullable();
-            $table->string('course_other_img')->nullable();
             $table->integer('course_approve')->nullable();
             $table->integer('course_ban')->nullable();
             $table->integer('course_suggest')->nullable();

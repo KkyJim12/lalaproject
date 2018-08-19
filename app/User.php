@@ -37,4 +37,9 @@ class User extends Model
 
         return $check;
     }
+
+    public function study()
+    {
+        return $this->belongsToMany('App\User','study','user_id','course_id');
+    }
 }

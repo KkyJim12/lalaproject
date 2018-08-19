@@ -6,6 +6,7 @@
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel="stylesheet" href="/assets/css/dropzone.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -13,7 +14,6 @@
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
     <script src="assets/js/dropzone.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <div id="fb-root"></div>

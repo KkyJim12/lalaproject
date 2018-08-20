@@ -9,12 +9,21 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel="stylesheet" href="/assets/css/dropzone.min.css">
+    <link href="/assets/css/hover.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="/assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery.loading-indicator.min.js"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="assets/js/dropzone.js"></script>
+    <script src="/assets/js/dropzone.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
   </head>
+  <script type="text/javascript">
+  $(window).load(function() {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");;
+});
+  </script>
   <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -27,5 +36,7 @@
     @include('components.navbar')
     @include('components.menu')
     @yield('content')
+    @include('components.footer')
   </body>
+
 </html>

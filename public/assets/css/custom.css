@@ -75,3 +75,10 @@ body  {
   outline: none;
   width:100%;
 }
+
+.footer-mod {
+  color:white;
+  background-color:#2f87b8;
+  height:300px;
+  margin-top: 200px;
+}

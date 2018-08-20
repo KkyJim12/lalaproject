@@ -114,13 +114,20 @@
       <div class="border mt-3 course-card">
         <h2>จำนวนคนเรียน</h2>
         <h1>{{$num_course}}/{{$course->course_max}}</h1>
-        <h6>{{$course->course_rank}}</h6>
+        <h6>{{$course->course_rank}}</h6><hr>
         @if(session('user_log') == null)
         <a href="/login"><button class="btn btn-success form-control">ล๊อกอินเพื่อสมัครเรียน</button></a>
+        @elseif($course->course_approve == null)
+          <button class="btn btn-danger form-control" disabled>คอร์สยังไม่ได้รับการอนุมัติ</button>
         @elseif($mytime > $course->course_expire_date)
           <button class="btn btn-danger form-control" disabled>หมดเขตรับสมัครแล้ว</button>
+        @elseif($already_join)
+          <button class="btn btn-danger form-control" disabled>คุณสมัครคอร์สนี้แล้ว</button>
+        @elseif($course->course_max == $course->course_now_joining)
+          <button class="btn btn-danger form-control" disabled>คอร์สเต็มแล้ว</button>
         @elseif($course_transfer)
         <div class="form-group">
+          <h5>฿{{($course->course_price)*0.1}} (มัดจำ 10%)</h5>
           <label for="upload_slip">อัพโหลดหลักฐาน</label>
           <form class="" action="/upload-slip" method="post" enctype="multipart/form-data">
             <input type="hidden" name="course_id" value="{{$course->course_id}}">
@@ -143,21 +150,18 @@
           @csrf
           <button class="btn btn-danger form-control" type="submit" name="button">ยกเลิก</button>
         </form>
-        @elseif($course->course_max == $course->course_now_joining)
-          <button class="btn btn-danger form-control" disabled>คอร์สเต็มแล้ว</button>
-        @elseif($already_join)
-          <button class="btn btn-danger form-control" disabled>คุณสมัครคอร์สนี้แล้ว</button>
         @else
+        <h5>฿{{($course->course_price)*0.1}} (มัดจำ 10%)</h5>
         <form class="" action="/transfer-study-process/{{$course->course_id}}" method="post">
           <input type="hidden" name="course_id" value="{{$course->course_id}}">
           @csrf
-          <button class="btn btn-success form-control" type="submit" name="button">โอนเงินค่าสมัคร</button>
+          <button class="btn btn-success form-control" type="submit" name="button">โอนเงิน</button>
         </form>
 
         <form class="checkout-form mt-2" name="checkoutForm" method="POST" action="/omise-checkout">
           @csrf
           <input type="hidden" name="course_description" value="{{$course->course_name}}" />
-          <input type="hidden" name="course_price" value="{{$course->course_price}}00">
+          <input type="hidden" name="course_price" value="{{($course->course_price.'00')*0.1}}">
           <input type="hidden" name="course_id" value="{{$course->course_id}}">
           <script type="text/javascript" src="https://cdn.omise.co/card.js"
             data-key="pkey_test_5cxodoewdmtrmj4j1g4"
@@ -165,7 +169,7 @@
             data-frame-label="www.Bestskill.co"
             data-button-label="จ่ายบัตรเครดิต/เดบิต"
             data-submit-label="ยืนยันการชำระเงิน"
-            data-amount= "{{$course->course_price}}00"
+            data-amount= "{{($course->course_price.'00')*0.1}}"
             data-currency="thb"
             >
           </script>

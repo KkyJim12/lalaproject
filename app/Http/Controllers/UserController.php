@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Hash;
 use App\User;
 use Illuminate\Support\Facades\Storage;
+use App\Wallet;
 
 class UserController extends Controller
 {
@@ -35,6 +36,12 @@ class UserController extends Controller
       $user->user_birthdate = $request->user_birthdate;
       $user->user_gender = $request->user_gender;
       $user->save();
+
+      $wallet = new Wallet;
+      $wallet->user_id = $user->user_id;
+      $wallet->wallet_hold = 0;
+      $wallet->wallet_rent = 0;
+      $wallet->save();
 
       session([
                 'user_id' => $user->user_id,

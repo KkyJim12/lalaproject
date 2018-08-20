@@ -11,6 +11,7 @@ use App\Study;
 use App\Transfer;
 use Carbon;
 use App\CourseOtherImg;
+use App\Wallet;
 
 class UIViewController extends Controller
 {
@@ -18,8 +19,8 @@ class UIViewController extends Controller
       $category = Category::all();
       $slide = Slide::all();
       $mytime = Carbon\Carbon::now();
-      $suggest_course = Course::where('course_suggest',1)->where('course_expire_date','>',$mytime)->get();
-      $popular_course = Course::where('course_expire_date','>',$mytime)->orderBy('course_now_joining','asc')->take(8)->get();
+      $suggest_course = Course::where('course_suggest',1)->where('course_expire_date','>',$mytime)->where('course_approve',1)->take(9)->get();
+      $popular_course = Course::where('course_expire_date','>',$mytime)->where('course_approve',1)->orderBy('course_now_joining','asc')->take(9)->get();
       if ($slide->count() == 0) {
         $otherslide = null;
         $firstslide = null;
@@ -176,6 +177,7 @@ class UIViewController extends Controller
       $category = Category::all();
       $checkcourse = Course::where('user_id',$user_id)->get();
       $seecourse = Course::where('user_id',$user_id)->get();
+      $seecourse_approve = Course::where('user_id',$user_id)->get();
       $course_qty = Course::where('user_id',$user_id)->count();
       $mycourse = Study::where('user_id',$user_id)->get();
 
@@ -198,7 +200,7 @@ class UIViewController extends Controller
         return view('pages.show-course-info',[
                                             'user' => $user,
                                             'show_category' => $category,
-                                            'course' => $seecourse,
+                                            'course' => $seecourse_approve,
                                             'course_qty' => $course_qty,
                                           ]);
       }
@@ -231,9 +233,9 @@ class UIViewController extends Controller
       $course = Course::where('course_id',$course_id)->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
       $mytime = Carbon\Carbon::now();
-      $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->first();
-      $course_transfer =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',false)->first();
-      $transfer_upload =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',true)->first();
+      $already_join = Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_approve',true)->first();
+      $course_transfer =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',null)->first();
+      $transfer_upload =Study::where('course_id',$course_id)->where('user_id',session('user_id'))->where('study_status',true)->where('study_approve',null)->first();
       if ($course == null) {
         abort(404);
       }
@@ -374,5 +376,20 @@ class UIViewController extends Controller
       return view('pages.admin-see-transfer',[
                                               'transfer' => $transfer,
                                              ]);
+    }
+
+    public function ShowWallet($user_id)  {
+      if ($user_id != session('user_id')) {
+        return redirect()->back();
+      }
+      else {
+        $category = Category::all();
+        $wallet = Wallet::where('user_id',$user_id)->first();
+        return view('pages.wallet',[
+                                    'show_category' => $category,
+                                    'wallet' => $wallet,
+                                   ]);
+      }
+
     }
 }

@@ -146,3 +146,5 @@ Route::post('/admin-transfer-reject/{course_id}','StudyController@AdminTransferR
 Route::get('/search-data','UIViewController@ShowSearchResult');
 
 Route::get('/delete-course-other-img/{course_other_img_id}','CourseController@DelteCourseOtherImgProcess')->middleware('login');
+
+//Route::get('/wallet/{user_id}','UIViewController@ShowWallet');//

@@ -7,6 +7,7 @@ use App\Study;
 use App\Course;
 use App\Transfer;
 use Carbon\Carbon;
+use App\Wallet;
 
 class StudyController extends Controller
 {
@@ -33,7 +34,7 @@ class StudyController extends Controller
         $study = new Study;
         $study->user_id = session('user_id');
         $study->course_id = $course_id;
-        $study->study_status = false;
+        $study->study_status = null;
         $study->save();
 
         $course = Course::where('course_id',$course_id)->first();
@@ -102,17 +103,33 @@ class StudyController extends Controller
 
     public function AdminTransferApprove(Request $request,$course_id) {
       $transfer_status = Transfer::where('transfer_course_id',$request->course_id)->where('transfer_user_id',$request->user_id)->first();
-      $transfer_status->transfer_accept = true;
+      if ($transfer_status->transfer_accept == true) {
+        return redirect()->back();
+      }
+      else {
+        $transfer_status = Transfer::where('transfer_course_id',$request->course_id)->where('transfer_user_id',$request->user_id)->first();
+        $transfer_status->transfer_accept = true;
+        $transfer_status->save();
 
-      $study_status =Study::where('course_id',$request->course_id)->where('user_id',$request->user_id)->first();
-      $study_status->study_status = true;
-      $study_status->save();
-      return redirect()->route('admin-transfer');
+        $study_status =Study::where('course_id',$request->course_id)->where('user_id',$request->user_id)->first();
+        $study_status->study_status = true;
+        $study_status->study_approve = true;
+        $study_status->save();
+
+        $course = Course::where('course_id',$request->course_id)->first();
+
+        $wallet = Wallet::where('user_id',$course->user_id)->first();
+        $my_money = $course->course_price * 0.9;
+        $wallet->wallet_hold = $wallet->wallet_hold + $my_money;
+        $wallet->save();
+
+        return redirect()->route('admin-transfer');
+      }
     }
 
     public function AdminTransferReject(Request $request,$course_id) {
       $transfer_status = Transfer::where('transfer_course_id',$request->course_id)->where('transfer_user_id',$request->user_id)->first();
-      $transfer_status->transfer_accept = false;
+      $transfer_status->delete();
 
       $study_status =Study::where('course_id',$request->course_id)->where('user_id',$request->user_id)->first();
       $study_status->delete();

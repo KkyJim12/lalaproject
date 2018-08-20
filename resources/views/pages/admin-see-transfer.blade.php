@@ -10,6 +10,7 @@
     <h3>ชื่อผู้โอน: {{$transfer->transfer_user_name}}</hh3>
     <h3>ชื่อคอร์ส: {{$transfer->transfer_course_name}}</h3>
     <h3>ราคา: {{$transfer->transfer_course_price}}</h3>
+    <h3>มัดจำ10% หรือ ต้องจ่าย: {{($transfer->transfer_course_price)*0.1}} บาท</h3>
     <div class="">
       <form class="" action="/admin-transfer-approve/{{$transfer->transfer_course_id}}" method="post">
         <input type="hidden" name="course_id" value="{{$transfer->transfer_course_id}}">

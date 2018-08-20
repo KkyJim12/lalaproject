@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Study;
 use App\Course;
+use App\Wallet;
 
 class OmiseController extends Controller
 {
@@ -19,7 +20,7 @@ class OmiseController extends Controller
 
     $charge = \OmiseCharge::create(array(
       'card' => $request->omiseToken,
-      'amount' => $course_price->course_price.'00',
+      'amount' => ($course_price->course_price.'00')*0.1,
       'currency' => 'thb',
       'description' => $request->coures_description,
     ));
@@ -29,11 +30,18 @@ class OmiseController extends Controller
       $study = new Study;
       $study->user_id = session('user_id');
       $study->course_id = $request->course_id;
+      $study->study_approve = true;
       $study->save();
 
       $course = Course::where('course_id',$request->course_id)->first();
       $course->course_now_joining = $course->course_now_joining+1;
       $course->save();
+
+      $wallet = Wallet::where('user_id',$course->user_id)->first();
+      $my_money = $course->course_price * 0.9;
+      $wallet->wallet_hold = $wallet->wallet_hold + $my_money;
+      $wallet->save();
+
       return redirect()->back()->with('success','ชำระเงินเรียบร้อย');
     }
 

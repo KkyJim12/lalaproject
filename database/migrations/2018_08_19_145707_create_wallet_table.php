@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudyTable extends Migration
+class CreateWalletTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateStudyTable extends Migration
      */
     public function up()
     {
-        Schema::create('study', function (Blueprint $table) {
-            $table->increments('study_id');
-            $table->integer('user_id');
-            $table->integer('course_id');
-            $table->boolean('study_status')->nullable();
-            $table->boolean('study_approve')->nullable();
+        Schema::create('wallet', function (Blueprint $table) {
+            $table->increments('wallet_id');
+            $table->string('user_id');
+            $table->integer('wallet_hold');
+            $table->integer('wallet_rent');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateStudyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('study');
+        Schema::dropIfExists('wallet');
     }
 }

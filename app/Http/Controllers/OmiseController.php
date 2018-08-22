@@ -27,20 +27,23 @@ class OmiseController extends Controller
 
     if ($charge['status'] == 'successful') {
 
-      $study = new Study;
-      $study->user_id = session('user_id');
-      $study->course_id = $request->course_id;
-      $study->study_approve = true;
-      $study->save();
-
       $course = Course::where('course_id',$request->course_id)->first();
       $course->course_now_joining = $course->course_now_joining+1;
       $course->save();
 
-      $wallet = Wallet::where('user_id',$course->user_id)->first();
-      $my_money = $course->course_price * 0.9;
-      $wallet->wallet_hold = $wallet->wallet_hold + $my_money;
-      $wallet->save();
+      $mycourse = Course::where('course_id',$request->course_id)->first();
+      $study = new Study;
+      $study->user_id = session('user_id');
+      $study->course_id = $request->course_id;
+      $study->study_approve = true;
+      $study->course_img = $mycourse->course_img;
+      $study->course_name = $mycourse->course_name;
+      $study->course_price = $mycourse->course_price;
+      $study->course_now_joining = $mycourse->course_now_joining;
+      $study->course_max = $mycourse->course_max;
+      $study->course_start_date = $mycourse->course_start_date;
+      $study->course_end_date = $mycourse->course_end_date;
+      $study->save();
 
       return redirect()->back()->with('success','ชำระเงินเรียบร้อย');
     }

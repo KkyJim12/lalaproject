@@ -29,6 +29,8 @@ Route::get('/','UIViewController@ShowIndex')->name('home');
 
 Route::get('/register','UIViewController@ShowRegister');
 
+Route::post('/creat-course-other-img','CourseController@CreateCourseOtherImg');
+
 Route::get('/login','UIViewController@ShowLogin')->name('login');
 
 Route::post('/register-process','UserController@RegisterProcess');

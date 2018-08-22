@@ -31,15 +31,27 @@ class StudyController extends Controller
       }
 
       else {
-        $study = new Study;
-        $study->user_id = session('user_id');
-        $study->course_id = $course_id;
-        $study->study_status = null;
-        $study->save();
+
 
         $course = Course::where('course_id',$course_id)->first();
         $course->course_now_joining = $course->course_now_joining+1;
         $course->save();
+
+        $mycourse = Course::where('course_id',$course_id)->first();
+
+        $study = new Study;
+        $study->user_id = session('user_id');
+        $study->course_id = $course_id;
+        $study->study_status = null;
+        $study->course_img = $mycourse->course_img;
+        $study->course_name = $mycourse->course_name;
+        $study->course_price = $mycourse->course_price;
+        $study->course_now_joining = $mycourse->course_now_joining;
+        $study->course_max = $mycourse->course_max;
+        $study->course_start_date = $mycourse->course_start_date;
+        $study->course_end_date = $mycourse->course_end_date;
+        $study->save();
+
         return redirect()->back();
       }
 

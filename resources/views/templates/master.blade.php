@@ -15,8 +15,7 @@
     <script src="/assets/js/jquery.loading-indicator.min.js"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="/assets/js/dropzone.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/assets/js/dropzone.js"></script>
 
   </head>
   <body>
@@ -26,7 +25,7 @@
 
         $(function(){
             $("#PhotosUpload").dropzone({
-                url: "/backstage/process/uploadProductSubImage.do",
+                url: "/create-course-other-img",
                 maxFilesize: 2,
                 acceptedFiles: "image/*",
                 addRemoveLinks: true,
@@ -35,14 +34,8 @@
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 },
                 clickable: "#manualUploadBoxTriggerButton",
-                success: function(file, response){
-                    if(response.status == "ok"){
-                        console.log("[ImageUpload] Upload OK: " + response.fileID + ", UUID: " + file.upload.uuid);
-                        $("#PhotosDiv").append("<input class=\"gtPhotoElement\" type=\"hidden\" data-uuid=\"" + file.upload.uuid + "\" name=\"course_other_img[]\" value=\"" + response.fileID + "\" />");
-                    }else{
-                        console.log("[ImageUpload] [ERR] Upload exception:");
-                        console.log(response);
-                    }
+                error: function(file, response){
+                        console.log("[ImageUpload] Upload OK: ");
                 },
                 removedfile: function(file) {
                     console.log("[ImageUpload] Remove by UUID: " + file.upload.uuid);

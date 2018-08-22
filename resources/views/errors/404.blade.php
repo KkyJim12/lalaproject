@@ -74,9 +74,17 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mt-5">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
       <h1 style="text-align:center; font-size:200px;">ไม่พบหน้านี้</h1>
     </div>
   </div>
 </div>
+@include('components.footer')
 </body>
 </html>

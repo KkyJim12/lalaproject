@@ -19,6 +19,13 @@ class CreateStudyTable extends Migration
             $table->integer('course_id');
             $table->boolean('study_status')->nullable();
             $table->boolean('study_approve')->nullable();
+            $table->string('course_img');
+            $table->string('course_name');
+            $table->integer('course_price');
+            $table->integer('course_now_joining');
+            $table->integer('course_max');
+            $table->date('course_start_date');
+            $table->date('course_end_date');
             $table->timestamps();
         });
     }

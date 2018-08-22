@@ -14,6 +14,13 @@
               </ul>
           </div>
       @endif
+      @if (session('error'))
+          <div class="alert alert-danger">
+              <ul>
+                <li>{{ session('error')}}</li>
+              </ul>
+          </div>
+      @endif
     </div>
     <form class="row" action="/create-course-process" method="post" enctype="multipart/form-data">
       <div class="form-group col-md-6">
@@ -110,9 +117,9 @@
               <div class="panel-body text-center dropzone" id="PhotosUpload">
               </div>
           </div>
+          <input type="file" name="course_other_img[]" value=""  multiple>
           <a class="btn btn-block btn-sm btn-primary mt-2" id="manualUploadBoxTriggerButton"><i class="fa fa-camera"></i> เลือกไฟล์รูปภาพเพิ่มเติม</a>
           <div style="display:none;" id="PhotosDiv">
-
           </div>
       </div>
       <input type="hidden" name="user_id" value="{{session('user_id')}}">

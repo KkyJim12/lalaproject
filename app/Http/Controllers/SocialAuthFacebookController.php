@@ -52,15 +52,15 @@ class SocialAuthFacebookController extends Controller
             $user = new User;
             $createdUser = $user->addNew($create);
             session([
-                      'user_id' => $user->user_id,
-                      'user_img' => $user->user_img,
-                      'user_fname' => $user->user_fname,
-                      'user_lname' => $user->user_lname,
-                      'user_email' => $user->user_email,
-                      'user_birthdate' => $user->user_birthdate,
-                      'user_gender' => $user->user_gender,
+                      'user_id' => $createdUser->user_id,
+                      'user_img' => $createdUser->user_img,
+                      'user_fname' => $createdUser->user_fname,
+                      'user_lname' => $createdUser->user_lname,
+                      'user_email' => $createdUser->user_email,
+                      'user_birthdate' => $createdUser->user_birthdate,
+                      'user_gender' => $createdUser->user_gender,
                       'user_log' => 1,
-                      'user_admin' => $user->user_admin,
+                      'user_admin' => $createdUser->user_admin,
                     ]);
 
             return redirect()->route('home');

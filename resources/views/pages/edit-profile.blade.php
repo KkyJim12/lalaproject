@@ -6,7 +6,7 @@
       <div class="col-lg-12">
         <h1 style="text-align:center;">แก้ไขข้อมูล</h1>
       </div>
-      <div class="col-lg-6 mt-3">
+      <div class="col-lg-6">
         <img class="edit-profile-img mx-auto rounded-circle d-block"" src="/assets/img/profile/{{$myprofile->user_img}}"/>
         <form class="mt-5" action="/edit-profile-img" method="post" enctype="multipart/form-data">
           <div class="input-group mb-3">
@@ -22,7 +22,7 @@
           </div>
         </form>
       </div>
-      <div class="col-lg-6 mt-3">
+      <div class="col-lg-6 mt-4">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

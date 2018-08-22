@@ -25,7 +25,7 @@
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
         <div class="card-body">
           <h2 class="card-title">{{$courses->course_name}}</h2><hr>
-          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$courses->course_max}}</span></h2>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-secondary" style="float:right;">{{$courses->course_now_joining}}/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
           <a class="btn btn-warning form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
         </div>
@@ -45,7 +45,7 @@
         <img class="card-img-top course-img" src="/assets/img/course/{{$mycourses->course_img}}" alt="course_img">
         <div class="card-body">
           <h2 class="card-title">{{$mycourses->course_name}}</h2><hr>
-          <h2 class="card-text"><span class="badge badge-primary">฿ {{$mycourses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$mycourses->course_max}}</span></h2>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$mycourses->course_price}}</span><span class="badge badge-secondary" style="float:right;">{{$mycourses->course_now_joining}}/{{$mycourses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($mycourses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($mycourses->course_end_date))}}</small>
         </div>
       </div>

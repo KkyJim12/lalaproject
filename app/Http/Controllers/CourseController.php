@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\CourseOtherImg;
+use App\User;
 
 class CourseController extends Controller
 {
+
+
     public function CreateCourseProcess(Request $request) {
-      
+
       $validatedData = $request->validate([
         'category_id' => 'required|numeric|max:255',
         'course_name' => 'required|max:255',
@@ -28,8 +31,16 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'required|image|max:2048',
-        'course_other_img' => 'required|max:2048',
+        'course_other_img' => 'required|image|max:2048',
       ]);
+
+      $coursemax = Course::where('user_id',$request->user_id)->count();
+      $user_id = User::where('user_id',$request->user_id)->first();
+      if ($coursemax = $user_id->course_qty_max) {
+        return redirect()->back()->with('error','คุณสร้างคอร์สครบจำนวนแล้ว');
+      }
+
+      else {
 
       $image = $request->file('course_img');
 
@@ -89,7 +100,7 @@ class CourseController extends Controller
 
 
       return redirect()->route('show-course',$request->user_id);
-
+      }
 
     }
 
@@ -113,7 +124,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'image|max:2048',
-        'course_other_img' => 'max:2048',
+        'course_other_img' => 'required|image|max:2048',
       ]);
 
       if (isset($request->course_img) & isset($request->course_other_img)) {

@@ -26,5 +26,10 @@
       {{ $course_in_category->links() }}
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 @endsection

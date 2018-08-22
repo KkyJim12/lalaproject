@@ -99,11 +99,21 @@
       </div>
       <div class="form-group col-md-12">
         <label for="course_img">รูปภาพหลัก</label>
-        <input type="file" class="form-control-file" id="course_img" name="course_img">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="course_img" name="course_img">
+          <label class="custom-file-label" for="course_img" aria-describedby="inputGroupFileAddon02">Choose file</label>
+        </div>
       </div>
-      <div class="form-group col-md-12">
-        <label for="course_other_img">รูปภาพอื่นๆ</label>
-        <input type="file" class="form-control-file" id="course_other_img" name="course_other_img[]" multiple>
+      <div class="form-group form-group-cstm-padding">
+          <label for="featured_photo"><b>รูปภาพเพิ่มเติม</b> <span class="text-muted">(สูงสุด 2MB ต่อภาพ)</span></label>
+          <div class="panel panel-inverse form-drop">
+              <div class="panel-body text-center dropzone" id="PhotosUpload">
+              </div>
+          </div>
+          <a class="btn btn-block btn-sm btn-primary mt-2" id="manualUploadBoxTriggerButton"><i class="fa fa-camera"></i> เลือกไฟล์รูปภาพเพิ่มเติม</a>
+          <div style="display:none;" id="PhotosDiv">
+
+          </div>
       </div>
       <input type="hidden" name="user_id" value="{{session('user_id')}}">
       @csrf

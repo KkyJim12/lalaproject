@@ -25,7 +25,7 @@ Route::post('/omise-checkout','OmiseController@OmiseCheckout')->middleware('logi
 
 //////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/','UIViewController@ShowIndex');
+Route::get('/','UIViewController@ShowIndex')->name('home');
 
 Route::get('/register','UIViewController@ShowRegister');
 

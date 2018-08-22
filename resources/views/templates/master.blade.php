@@ -15,16 +15,47 @@
     <script src="/assets/js/jquery.loading-indicator.min.js"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="/assets/js/dropzone.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+    <script src="/assets/js/dropzone.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
   </head>
-  <script type="text/javascript">
-  $(window).load(function() {
-  // Animate loader off screen
-  $(".se-pre-con").fadeOut("slow");;
-});
-  </script>
   <body>
+    <script>
+
+        Dropzone.autoDiscover = false;
+
+        $(function(){
+            $("#PhotosUpload").dropzone({
+                url: "/backstage/process/uploadProductSubImage.do",
+                maxFilesize: 2,
+                acceptedFiles: "image/*",
+                addRemoveLinks: true,
+                dictDefaultMessage: "<b>ลากและวางรูปที่นี่</b><br /><small class=\"text-muted\">หรือคลิกที่ปุ่มด้านล่างเพื่อเลือกไฟล์</small>",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                clickable: "#manualUploadBoxTriggerButton",
+                success: function(file, response){
+                    if(response.status == "ok"){
+                        console.log("[ImageUpload] Upload OK: " + response.fileID + ", UUID: " + file.upload.uuid);
+                        $("#PhotosDiv").append("<input class=\"gtPhotoElement\" type=\"hidden\" data-uuid=\"" + file.upload.uuid + "\" name=\"course_other_img[]\" value=\"" + response.fileID + "\" />");
+                    }else{
+                        console.log("[ImageUpload] [ERR] Upload exception:");
+                        console.log(response);
+                    }
+                },
+                removedfile: function(file) {
+                    console.log("[ImageUpload] Remove by UUID: " + file.upload.uuid);
+                    $(".pmtCarPhotoElement[data-uuid=\"" + file.upload.uuid + "\"]").remove();
+                    var _ref;
+                    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                }
+            });
+        });
+    </script>
+
+
+
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -37,6 +68,8 @@
     @include('components.menu')
     @yield('content')
     @include('components.footer')
+
+
   </body>
 
 </html>

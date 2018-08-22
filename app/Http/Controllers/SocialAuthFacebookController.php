@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Socialite;
 use App\User;
 use Carbon\Carbon;
+use Auth;
 
 class SocialAuthFacebookController extends Controller
 {
@@ -36,22 +37,31 @@ class SocialAuthFacebookController extends Controller
             $user = Socialite::driver('facebook')->fields([
             'first_name', 'last_name', 'email', 'gender', 'birthday','picture','id'
             ])->user();
-            $create['user_fname'] = serialize($user->user['first_name']);
-            $create['user_lname'] = serialize($user->user['last_name']);
-            $create['user_email'] = serialize($user->user['email']);
-            $create['user_birthdate'] = date('Y-m-d', strtotime(serialize($user->user['birthday'])));
-            $create['user_gender'] = serialize($user->user['gender']);
+            $create['user_fname'] = $user->user['first_name'];
+            $create['user_lname'] = $user->user['last_name'];
+            $create['user_email'] = $user->user['email'];
+            $create['user_birthdate'] = date('Y-m-d', strtotime($user->user['birthday']));
+            $create['user_gender'] = $user->user['gender'];
             $create['user_password'] = 'secret';
             $create['course_qty_max'] = 5;
-            $create['facebook_id'] = serialize($user->user['id']);
+            $create['facebook_id'] = $user->user['id'];
             $create['user_img'] = 'profile.jpg';
 
 
 
-            $userModel = new User;
-            $createdUser = $userModel->addNew($create);
-            Auth::loginUsingId($createdUser->id);
-
+            $user = new User;
+            $createdUser = $user->addNew($create);
+            session([
+                      'user_id' => $user->user_id,
+                      'user_img' => $user->user_img,
+                      'user_fname' => $user->user_fname,
+                      'user_lname' => $user->user_lname,
+                      'user_email' => $user->user_email,
+                      'user_birthdate' => $user->user_birthdate,
+                      'user_gender' => $user->user_gender,
+                      'user_log' => 1,
+                      'user_admin' => $user->user_admin,
+                    ]);
 
             return redirect()->route('home');
 

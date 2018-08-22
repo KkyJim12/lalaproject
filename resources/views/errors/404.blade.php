@@ -25,6 +25,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-mod">
+  <div class="container">
   <a class="navbar-brand" href="/">อบรม.com</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -66,6 +67,7 @@
       </li>
     </ul>
     @endif
+  </div>
   </div>
 </nav>
 

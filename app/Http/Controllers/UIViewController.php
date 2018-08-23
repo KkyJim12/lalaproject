@@ -113,23 +113,23 @@ class UIViewController extends Controller
     }
 
     public function ShowAdmin() {
-      return view('pages.admin-dashboard');
+      return view('pages.admin.admin-dashboard');
     }
 
     public function ShowAdminCategory() {
       $category = Category::all();
-      return view('pages.admin-category',[
+      return view('pages.admin.admin-category',[
                                           'show_category' => $category,
                                          ]);
     }
 
     public function ShowAdminCreateCategory() {
-      return view('pages.admin-create-category');
+      return view('pages.admin.admin-create-category');
     }
 
     public function ShowAdminEditCategory($category_id) {
       $category = Category::where('category_id',$category_id)->first();
-      return view('pages.admin-edit-category',[
+      return view('pages.admin.admin-edit-category',[
                                               'edit_category' => $category,
                                               ]);
     }
@@ -154,18 +154,18 @@ class UIViewController extends Controller
 
     public function ShowAdminSlide()  {
       $slide = Slide::all();
-      return view('pages.admin-slide',[
+      return view('pages.admin.admin-slide',[
                                         'show_slide' => $slide,
                                       ]);
     }
 
     public function ShowAdminCreateSlide()  {
-      return view('pages.admin-create-slide');
+      return view('pages.admin.admin-create-slide');
     }
 
     public function ShowAdminEditSlide($slide_id)  {
       $slide = Slide::where('slide_id',$slide_id)->first();
-      return view('pages.admin-edit-slide',[
+      return view('pages.admin.admin-edit-slide',[
                                             'edit_slide' => $slide,
                                            ]);
     }
@@ -258,7 +258,7 @@ class UIViewController extends Controller
 
     public function ShowAdminCourse() {
       $course = Course::all();
-      return view('pages.admin-course',[
+      return view('pages.admin.admin-course',[
                                         'course' => $course,
                                        ]);
     }
@@ -267,7 +267,7 @@ class UIViewController extends Controller
       $category = Category::all();
       $course = Course::where('course_id',$course_id)->first();
       $course_other_img = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-edit-course',[
+      return view('pages.admin.admin-edit-course',[
                                               'show_category' => $category,
                                               'course' => $course,
                                               'course_other_img' => $course_other_img,
@@ -278,7 +278,7 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-see-course',[
+      return view('pages.admin.admin-see-course',[
                                             'course' => $course,
                                             'mycourse' => $mycourse,
                                             'courseloop' => $courseloop,
@@ -287,7 +287,7 @@ class UIViewController extends Controller
 
     public function ShowAdminCourseBan() {
       $course = Course::onlyTrashed()->get();
-      return view('pages.admin-course-ban',[
+      return view('pages.admin.admin-course-ban',[
                                             'course' => $course,
                                            ]);
     }
@@ -296,7 +296,7 @@ class UIViewController extends Controller
       $mycourse = Course::onlyTrashed()->find($course_id);
       $course = Course::where('course_id',$course_id)->onlyTrashed()->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-see-ban-course',[
+      return view('pages.admin.admin-see-ban-course',[
                                                 'course' => $course,
                                                 'mycourse' => $mycourse,
                                                 'courseloop' => $courseloop,
@@ -305,21 +305,21 @@ class UIViewController extends Controller
 
     public function ShowAdminCourseApprove()  {
       $course = Course::where('course_approve',1)->get();
-      return view('pages.admin-course-approve',[
+      return view('pages.admin.admin-course-approve',[
                                                 'course' => $course,
                                                ]);
     }
 
     public function ShowAdminCourseNotApprove() {
     $course = Course::where('course_approve',null)->where('course_reject',null)->get();
-      return view('pages.admin-course-not-approve',[
+      return view('pages.admin.admin-course-not-approve',[
                                                 'course' => $course,
                                                ]);
     }
 
     public function ShowAdminCourseReject() {
     $course = Course::where('course_reject','!=',null)->get();
-      return view('pages.admin-course-reject',[
+      return view('pages.admin.admin-course-reject',[
                                                 'course' => $course,
                                                ]);
     }
@@ -328,7 +328,7 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-see-course-approve',[
+      return view('pages.admin.admin-see-course-approve',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
                                                     'courseloop' => $courseloop,
@@ -339,7 +339,7 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-see-course-not-approve',[
+      return view('pages.admin.admin-see-course-not-approve',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
                                                     'courseloop' => $courseloop,
@@ -350,7 +350,7 @@ class UIViewController extends Controller
       $mycourse = Course::find($course_id);
       $course = Course::where('course_id',$course_id)->first();
       $courseloop = CourseOtherImg::where('course_id',$course_id)->get();
-      return view('pages.admin-see-course-reject',[
+      return view('pages.admin.admin-see-course-reject',[
                                                     'mycourse' => $mycourse,
                                                     'course' => $course,
                                                     'courseloop' => $courseloop,
@@ -359,21 +359,21 @@ class UIViewController extends Controller
 
     public function ShowAdminUser() {
       $users = User::all();
-      return view('pages.admin-user',[
+      return view('pages.admin.admin-user',[
                                       'users' => $users,
                                      ]);
     }
 
     public function ShowAdminTransfer() {
       $transfer = Transfer::where('transfer_accept',null)->get();
-      return view('pages.admin-transfer',[
+      return view('pages.admin.admin-transfer',[
                                           'transfer' => $transfer,
                                          ]);
     }
 
     public function ShowAdminSeeTransfer($transfer_id)  {
       $transfer = Transfer::where('transfer_id',$transfer_id)->first();
-      return view('pages.admin-see-transfer',[
+      return view('pages.admin.admin-see-transfer',[
                                               'transfer' => $transfer,
                                              ]);
     }

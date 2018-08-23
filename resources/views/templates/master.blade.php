@@ -19,33 +19,7 @@
 
   </head>
   <body>
-    <script>
 
-        Dropzone.autoDiscover = false;
-
-        $(function(){
-            $("#PhotosUpload").dropzone({
-                url: "/create-course-other-img",
-                maxFilesize: 2,
-                acceptedFiles: "image/*",
-                addRemoveLinks: true,
-                dictDefaultMessage: "<b>ลากและวางรูปที่นี่</b><br /><small class=\"text-muted\">หรือคลิกที่ปุ่มด้านล่างเพื่อเลือกไฟล์</small>",
-                headers: {
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                clickable: "#manualUploadBoxTriggerButton",
-                error: function(file, response){
-                        console.log("[ImageUpload] Upload OK: ");
-                },
-                removedfile: function(file) {
-                    console.log("[ImageUpload] Remove by UUID: " + file.upload.uuid);
-                    $(".pmtCarPhotoElement[data-uuid=\"" + file.upload.uuid + "\"]").remove();
-                    var _ref;
-                    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-                }
-            });
-        });
-    </script>
 
 
 

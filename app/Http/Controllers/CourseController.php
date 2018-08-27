@@ -34,9 +34,9 @@ class CourseController extends Controller
         'course_other_img' => 'required|image|max:2048',
       ]);
 
-      $coursemax = Course::where('user_id',$request->user_id)->count();
+      $coursemax = Course::where('user_id',$request->user_id)->get();
       $user_id = User::where('user_id',$request->user_id)->first();
-      if ($coursemax = $user_id->course_qty_max) {
+      if ($coursemax->count() == $user_id->course_qty_max) {
         return redirect()->back()->with('error','คุณสร้างคอร์สครบจำนวนแล้ว');
       }
 

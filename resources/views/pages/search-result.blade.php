@@ -6,6 +6,11 @@
     <div class="col-lg-12">
       <h1>ผลการค้นหา "{{$search_data}}"</h1><hr>
     </div>
+    @if($search_result->count() == 0)
+    <div class="col-lg-12">
+      <h1 class="mt-5" style="font-size:100px; text-align:center;">ไม่พบข้อมูลการค้าหา</h1>
+    </div>
+    @else
     @foreach($search_result as $search_results)
     <div class="col-md-6 col-lg-4 mt-5">
     <a class="course-link" href="/see-course/{{$search_results->course_id}}">
@@ -20,6 +25,7 @@
     </a>
    </div>
    @endforeach
+   @endif
   </div>
   <div class="row">
     <div class="col-lg-12 mt-5">

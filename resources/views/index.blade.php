@@ -43,6 +43,11 @@
     <div class="col-lg-12">
       <h1>คอร์สยอดนิยม</h1><hr>
     </div>
+    @if($popular_course->count() == 0)
+      <div class="col-lg-12 mt-5 mb-5">
+        <h2 style="text-align:center;">ยังไม่มีคอร์สยอดนิยม</h2>
+      </div>
+    @else
     @foreach($popular_course as $popular_courses)
     <div class="col-md-6 col-lg-4 mt-5">
         <a class="course-link" href="/see-course/{{$popular_courses->course_id}}">
@@ -61,8 +66,8 @@
           </div>
         </a>
     </div>
-
     @endforeach
+    @endif
   </div>
 </div>
 
@@ -71,6 +76,11 @@
     <div class="col-lg-12">
       <h1>คอร์สแนะนำ</h1><hr>
     </div>
+    @if($suggest_course->count() == 0)
+    <div class="col-lg-12 mt-5 mb-5">
+      <h2 style="text-align:center;">ยังไม่มีคอร์สแนะนำ</h2>
+    </div>
+    @else
     @foreach($suggest_course as $suggest_courses)
       <div class="col-md-6 col-lg-4 mt-5">
         <a class="course-link" href="/see-course/{{$suggest_courses->course_id}}">
@@ -90,6 +100,7 @@
       </a>
       </div>
     @endforeach
+    @endif
   </div>
 </div>
 
@@ -98,6 +109,11 @@
     <div class="col-lg-12">
       <h1>หมวดหมู่งานยอดนิยม</h1><hr>
     </div>
+    @if($show_category->count() == 0)
+    <div class="col-lg-12 mt-5 mb-5">
+      <h2 style="text-align:center;">ยังไม่มีหมวดหมู่แนะนำ</h2>
+    </div>
+    @else
     @foreach($show_category as $categorys)
       <div class="col-md-6 col-lg-3">
         <a href="/category/{{$categorys->category_id}}">
@@ -108,6 +124,7 @@
         </a>
       </div>
     @endforeach
+    @endif
   </div>
 </div>
 

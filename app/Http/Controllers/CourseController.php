@@ -296,8 +296,8 @@ class CourseController extends Controller
 
     }
 
-    public function DelteCourseOtherImgProcess($course_other_img_id)  {
-      $course = CourseOtherImg::where('course_other_img_id',$course_other_img_id)->first();
+    public function DelteCourseOtherImgProcess(Request $request,$course_other_img_id)  {
+      $course = CourseOtherImg::where('course_other_img_id',$reqeuset->course_other_img_id)->first();
       $course->delete();
       return redirect()->back();
     }

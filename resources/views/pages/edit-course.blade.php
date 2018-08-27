@@ -123,7 +123,10 @@
     @foreach($course_other_img as $course_other_imgs)
     <div class="col-lg-2">
       <img src="/assets/img/courseimg/{{$course_other_imgs->course_other_img_img}}"  style="width:100%; height:150px;">
-      <a class="btn btn-danger form-control" href="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}">ลบ</a>
+      <form class="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}" action="index.html" method="post">
+        <input type="hidden" name="{{$course_other_imgs->course_other_img_id}}" value="">
+        <button class="btn btn-danger form-control" type="submit" name="button">ลบ</button>
+      </form>
     </div>
     @endforeach
   </div>

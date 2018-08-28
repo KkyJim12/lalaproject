@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
@@ -14,7 +15,7 @@
     <script src="/assets/js/dropzone.min.js"></script>
   </head>
   <body style="background-color:gray;">
-    
+
     @include('components.navbar')
     <div class="mt-5">
       <div class="row">

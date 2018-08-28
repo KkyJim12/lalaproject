@@ -107,8 +107,8 @@
       <div class="form-group col-md-12">
         <label for="course_other_img">รูปภาพประกอบ</label>
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="cousre_other_img" name="course_other_img" multiple>
-          <label class="custom-file-label" for="course_other_img[]" aria-describedby="inputGroupFileAddon02">Choose file</label>
+          <input type="file" class="custom-file-input" id="cousre_other_img" name="course_other_img[course_other_img]" multiple>
+          <label class="custom-file-label" for="course_other_img" aria-describedby="inputGroupFileAddon02">Choose file</label>
         </div>
       </div>
       <input type="hidden" name="user_id" value="{{session('user_id')}}">
@@ -123,8 +123,9 @@
     @foreach($course_other_img as $course_other_imgs)
     <div class="col-lg-2">
       <img src="/assets/img/courseimg/{{$course_other_imgs->course_other_img_img}}"  style="width:100%; height:150px;">
-      <form class="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}" action="index.html" method="post">
+      <form class="" action="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}" method="post">
         <input type="hidden" name="{{$course_other_imgs->course_other_img_id}}" value="">
+        @csrf
         <button class="btn btn-danger form-control" type="submit" name="button">ลบ</button>
       </form>
     </div>

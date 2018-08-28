@@ -191,7 +191,7 @@ class AdminController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'image|max:2048',
-        'course_other_img' => 'required|image',
+        'course_other_img.course_other_img' => 'required|image|max:2048',
       ]);
 
       if (isset($request->course_img) & isset($request->course_other_img)) {

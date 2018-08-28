@@ -31,7 +31,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'required|image|max:2048',
-        'course_other_img' => 'required|image|max:2048',
+        'course_other_img.course_other_img' => 'required|image|max:2048',
       ]);
 
       $coursemax = Course::where('user_id',$request->user_id)->get();
@@ -124,7 +124,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'image|max:2048',
-        'course_other_img' => 'required|image|max:2048',
+        'course_other_img.course_other_img' => 'required|image|max:2048',
       ]);
 
       if (isset($request->course_img) & isset($request->course_other_img)) {
@@ -297,7 +297,7 @@ class CourseController extends Controller
     }
 
     public function DelteCourseOtherImgProcess(Request $request,$course_other_img_id)  {
-      $course = CourseOtherImg::where('course_other_img_id',$reqeuset->course_other_img_id)->first();
+      $course = CourseOtherImg::where('course_other_img_id',$request->course_other_img_id)->first();
       $course->delete();
       return redirect()->back();
     }

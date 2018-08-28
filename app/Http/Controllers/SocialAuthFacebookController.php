@@ -20,9 +20,9 @@ class SocialAuthFacebookController extends Controller
     public function redirect()
     {
       return Socialite::driver('facebook')->fields([
-          'first_name', 'last_name', 'email', 'user_gender', 'user_birthday','picture','id'
+          'first_name', 'last_name', 'email', 'gender', 'user_birthday','picture','id'
       ])->scopes([
-          'email', 'user_birthday','user_gender'
+          'email', 'user_birthday'
       ])->redirect();
     }
 

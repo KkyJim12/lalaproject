@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => '330857847010-j3q0mn7ksis1ck3uc5scuf51ci2cpf9e.apps.googleusercontent.com',
         'client_secret' => '95kQ-BJ2GOI2_wbjFmAjF6xi',
-        'redirect' => 'https://www.bestskill.co/google/callback',
+        'redirect' => 'https://bestskill.co/google/callback',
     ],
 
     'facebook' => [

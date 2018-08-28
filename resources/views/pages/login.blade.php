@@ -41,10 +41,10 @@
           <button class="btn btn-success form-control mt-2" type="submit">ล๊อกอิน</button>
         </form><hr>
         <div class="row justify-content-center">
-          <div class="col-md-4">
+          <div class="col-lg-4">
             <a href="/google/redirect" class="btn btn-block btn-social btn-google form-control"><i class="fab fa-google"></i>Google Login</a>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4">
             <a href="/facebook/redirect" class="btn btn-block btn-social btn-facebook form-control"><i class="fab fa-facebook"></i>Facebook Login</a>
           </div>
         </div>

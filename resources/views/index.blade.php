@@ -49,7 +49,7 @@
       </div>
     @else
     @foreach($popular_course as $popular_courses)
-    <div class="col-md-6 col-lg-4 mt-5">
+    <div class="col-lg-4 mt-5">
         <a class="course-link" href="/see-course/{{$popular_courses->course_id}}">
           <div class="card hvr-grow-shadow" style="width:80%;">
             <img class="card-img-top course-img" src="/assets/img/course/{{$popular_courses->course_img}}" alt="course_img">
@@ -82,7 +82,7 @@
     </div>
     @else
     @foreach($suggest_course as $suggest_courses)
-      <div class="col-md-6 col-lg-4 mt-5">
+      <div class="col-lg-4 mt-5">
         <a class="course-link" href="/see-course/{{$suggest_courses->course_id}}">
       <div class="card hvr-grow-shadow" style="width:80%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
@@ -115,7 +115,7 @@
     </div>
     @else
     @foreach($show_category as $categorys)
-      <div class="col-md-6 col-lg-3">
+      <div class="col-lg-3">
         <a href="/category/{{$categorys->category_id}}">
         <figure class="figure hvr-underline-reveal">
           <img src="/assets/img/category/{{$categorys->category_img}}" class="figure-img img-fluid rounded category-suggest-img" alt="category_img">

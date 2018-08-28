@@ -97,14 +97,14 @@
         <label for="course_detail">รายละเอียดคอร์ส</label>
         <textarea class="form-control" id="course_detail" name="course_detail" rows="5" placeholder="กรุณาใส่รายละเอียดคอร์ส">{{$course->course_detail}}</textarea>
       </div>
-      <div class="form-group col-md-12">
+      <div class="form-group col-lg-12">
         <label for="course_img">รูปภาพหลัก</label>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="course_img" name="course_img">
           <label class="custom-file-label" for="course_img" aria-describedby="inputGroupFileAddon02">Choose file</label>
         </div>
       </div>
-      <div class="form-group col-md-12">
+      <div class="form-group col-lg-12">
         <label for="course_other_img">รูปภาพประกอบ</label>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="cousre_other_img" name="course_other_img[course_other_img]" multiple>

@@ -115,7 +115,7 @@
         <label for="course_other_img">รูปภาพประกอบ</label>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="cousre_other_img" name="course_other_img" multiple>
-          <label class="custom-file-label" for="course_other_img" aria-describedby="inputGroupFileAddon02">Choose file</label>
+          <label class="custom-file-label" for="course_other_img[]" aria-describedby="inputGroupFileAddon02">Choose file</label>
         </div>
       </div>
       <input type="hidden" name="user_id" value="{{session('user_id')}}">

@@ -39,8 +39,9 @@ body  {
 }
 
 .course-slide   {
-  width:100%;
   height:400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .course-layout  {

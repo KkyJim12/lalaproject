@@ -25,15 +25,15 @@
     <div class="col-lg-12">
       <h1>{{$course->course_name}}</h1><hr>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="background-color:black;">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100 course-slide" src="/assets/img/course/{{$course->course_img}}" alt="slide">
+            <img class="d-block course-slide" src="/assets/img/course/{{$course->course_img}}" alt="slide">
           </div>
           @foreach($courseloop as $courses)
           <div class="carousel-item">
-            <img class="d-block w-100 course-slide" src="/assets/img/courseimg/{{$courses->course_other_img_img}}" alt="slide">
+            <img class="d-block course-slide" src="/assets/img/courseimg/{{$courses->course_other_img_img}}" alt="slide">
           </div>
           @endforeach
         </div>

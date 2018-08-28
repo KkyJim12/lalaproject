@@ -38,12 +38,12 @@ return [
     'google' => [
         'client_id' => '330857847010-j3q0mn7ksis1ck3uc5scuf51ci2cpf9e.apps.googleusercontent.com',
         'client_secret' => '95kQ-BJ2GOI2_wbjFmAjF6xi',
-        'redirect' => 'http://www.bestskill.co',
+        'redirect' => 'https://www.bestskill.co/google/callback',
     ],
 
     'facebook' => [
     'client_id' => '2198403540443452',
     'client_secret' => '76e7439956a22ff613da6ac541c13cd2',
-    'redirect' => 'http://bestskill.co/facebook/callback',
+    'redirect' => 'https://bestskill.co/facebook/callback',
     ],
 ];

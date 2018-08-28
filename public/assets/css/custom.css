@@ -39,7 +39,7 @@ body  {
 }
 
 .course-slide   {
-  width:auto !important;
+  width: 100px;
   height:400px;
   margin-left: auto;
   margin-right: auto;

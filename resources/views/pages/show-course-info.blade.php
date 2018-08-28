@@ -18,7 +18,7 @@
   </div>
   <div class="row">
     @foreach($course as $courses)
-    <div class="col-md-6 col-lg-4 mt-5">
+    <div class="col-lg-3 mt-5">
       <a class="course-link" href="/see-course/{{$courses->course_id}}">
       <div class="card hvr-grow-shadow" style="width:80%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">

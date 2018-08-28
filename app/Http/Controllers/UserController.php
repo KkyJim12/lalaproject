@@ -32,7 +32,7 @@ class UserController extends Controller
       $user->user_lname = $request->user_lname;
       $user->user_email = $request->user_email;
       $user->user_password = Hash::make($request->user_password);
-      $user->course_qty_max = 5;
+      $user->course_qty_max = 4;
       $user->user_birthdate = $request->user_birthdate;
       $user->user_gender = $request->user_gender;
       $user->save();

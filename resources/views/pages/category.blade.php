@@ -7,8 +7,8 @@
       <h1>{{$that_category->category_name}}</h1><hr>
     </div>
     @foreach($course_in_category as $course_in_categorys)
-    <div class="col-md-6 col-lg-4 mt-5">
-    <a class="course-link" href="/see-course/{{$course_in_categorys->course_id}}">
+    <div class="col-lg-3 mt-5" style="text-align:center;">
+    <a class="course-link" href="/see-course/{{$course_in_categorys->course_id}}" style="text-align:left;">
       <div class="card hvr-grow-shadow" style="width:80%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$course_in_categorys->course_img}}" alt="course_img">
         <div class="card-body">

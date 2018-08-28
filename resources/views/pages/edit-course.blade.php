@@ -15,7 +15,7 @@
           </div>
       @endif
     </div>
-    <form class="row" action="/edit-course-process/{{$course->course_id}}" method="post" enctype="multipart/form-data">
+    <form class="row" action="/edit-course-process/{{$course->course_id}}" method="post" enctype="multipart/form-data" style="margin:auto">
       <div class="form-group col-lg-6">
         <label for="course_name">ชื่อคอร์ส</label>
         <input type="text" class="form-control" id="course_name" name="course_name" value="{{$course->course_name}}" placeholder="กรุณาตั้งชื่อคอร์ส">

@@ -19,8 +19,8 @@ class UIViewController extends Controller
       $category = Category::all();
       $slide = Slide::all();
       $mytime = Carbon\Carbon::now();
-      $suggest_course = Course::where('course_suggest',1)->where('course_expire_date','>',$mytime)->where('course_approve',1)->take(9)->get();
-      $popular_course = Course::where('course_expire_date','>',$mytime)->where('course_approve',1)->orderBy('course_now_joining','asc')->take(9)->get();
+      $suggest_course = Course::where('course_suggest',1)->where('course_expire_date','>',$mytime)->where('course_approve',1)->take(12)->get();
+      $popular_course = Course::where('course_expire_date','>',$mytime)->where('course_approve',1)->orderBy('course_now_joining','asc')->take(12)->get();
       if ($slide->count() == 0) {
         $otherslide = null;
         $firstslide = null;

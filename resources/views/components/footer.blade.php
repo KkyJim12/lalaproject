@@ -14,7 +14,7 @@
     <p>เวลาทำการ</p>
     <p>จัน-เสา: 08.00-18.00 น.</p>
   </div>
-  <div class="col-lg-4 mt-4">
+  <div class="col-lg-4 mt-4 mb-3">
     <p>Facebook Page</p><hr>
     <div class="fb-page"
   data-href="https://www.facebook.com/230416807620883"

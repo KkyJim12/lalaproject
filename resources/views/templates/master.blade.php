@@ -11,17 +11,41 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel="stylesheet" href="/assets/css/dropzone.min.css">
     <link href="/assets/css/hover.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="/assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="/assets/js/jquery.loading-indicator.min.js"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="/assets/js/dropzone.js"></script>
+    <script src="/assets/js/owl.carousel.js" type="text/javascript"></script>
 
   </head>
   <body>
 
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+                                    items:4 ,
+                                    responsiveClass:true,
+                                    responsive:{
+                                        0:{
+                                            items:1,
+                                            nav:true
+                                        },
+                                        600:{
+                                            items:3,
+                                            nav:false
+                                        },
+                                        1000:{
+                                            items:4,
+                                            nav:true,
+                                            loop:false
+                                        }
+                                    }
+                                  });
+    });
+    </script>
 
 
     <div id="fb-root"></div>

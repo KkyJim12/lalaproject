@@ -2,7 +2,6 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
@@ -19,10 +18,10 @@
     @include('components.navbar')
     <div class="mt-5">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-md-2">
           @include('components.admin-menu')
         </div>
-        <div class="col-lg-10">
+        <div class="col-md-10">
           @yield('content')
         </div>
       </div>

@@ -17,7 +17,7 @@
     @include('components.navbar')
     <div class="mt-5">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-md-2">
 
             <div class="col-lg-12">
               <a class="btn btn-info form-control" href="/admin">Admin Dashboard</a>
@@ -51,7 +51,7 @@
             </div>
 
         </div>
-        <div class="col-lg-10">
+        <div class="col-md-10">
           @if(session('error'))
           <div class="alert alert-danger">
               <ul>

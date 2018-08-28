@@ -23,10 +23,10 @@
   data-show-facepile="false"></div>
   </div>
 </div>
-</div><hr>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
+</div>
+<div class="container"style="border-top:1px solid rgba(0,0,0,0.1)">
+  <div class="row" style="background-color:#2f87b8;">
+    <div class="col-lg-12 mt-3">
       <span>@2018 Bestskill</span>
       <span style="float:right;">Engine by Jimmy Developments</span>
     </div>

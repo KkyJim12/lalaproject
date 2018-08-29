@@ -41,6 +41,7 @@ class UIViewController extends Controller
                               'firstslide' => $firstslide,
                               'otherslide' => $otherslide,
                               'suggest_course' => $suggest_course,
+                              'popular_course' => $popular_course,
                             ]);
       }
     }

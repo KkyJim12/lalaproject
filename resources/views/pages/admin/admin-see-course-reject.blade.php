@@ -52,7 +52,7 @@
       <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
       <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
       <h3>รายละเอียดอื่นๆ</h3>
-      <p>{{nl2br(e($course->course_detail))}}</p>
+      <p>{{$course->course_detail}}</p>
     </div>
     <div class="col-lg-3">
       <div class="border course-card">

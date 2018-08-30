@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="/"><img src="/assets/img/logo/logo.png" alt="logo" style="width:150px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
       <ul class="navbar-nav mr-auto">
         <form class="form-inline" method="get" action="/search-data">
           <div class="input-group">
-            <input type="text" name="search_data" class="form-control" placeholder="ค้นหาชื่อคอร์ส หรือ สถานที่เรียน" style="width:300px;">
+            <input type="text" name="search_data" class="form-control" placeholder="ค้นหาชื่อคอร์ส หรือ สถานที่เรียน" style="width:250px; padding:21px;">
               <div class="input-group-prepend">
                 @csrf
                 <button class="btn btn-success" type="submit" name="button"><i class="fas fa-search"></i></button>

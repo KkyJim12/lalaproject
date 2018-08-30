@@ -21,17 +21,17 @@
     <div class="container mt-3 mb-5">
       <div class="row">
         <div class="col-lg-12">
-          <h1>{{$course->course_name}}</h1><hr>
+          <h1>{{str_limit($course->course_name,70)}}</h1><hr>
         </div>
         <div class="col-lg-12" style="background-color:black;">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block course-slide" src="/assets/img/course/{{$course->course_img}}" alt="slide">
+                <img class="d-block course-slide" src="/assets/img/course/{{$course->course_img}}" alt="slide" style="max-width:100%;">
               </div>
               @foreach($courseloop as $courses)
               <div class="carousel-item">
-                <img class="d-block course-slide" src="/assets/img/courseimg/{{$courses->course_other_img_img}}" alt="slide">
+                <img class="d-block course-slide" src="/assets/img/courseimg/{{$courses->course_other_img_img}}" alt="slide" style="max-width:100%;">
               </div>
               @endforeach
             </div>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h3>{{$course->course_name}}</h3><hr>
+          <h3>{{str_limit($course->course_name,42)}}</h3><hr>
           <h5>ราคา {{$course->course_price}} บาท</h5>
           <p>สถานที่เรียน: {{$course->course_place}}</p>
           <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
@@ -125,8 +125,28 @@
               <button class="btn btn-danger form-control" disabled>คอร์สเต็มแล้ว</button>
             @elseif($course_transfer)
             <div class="form-group">
-              <h5>฿{{($course->course_price)*0.1}} (มัดจำ 10%)</h5>
+              <h5>฿{{($course->course_price)*0.1}} (มัดจำ 10%)</h5><br>
               <label for="upload_slip">อัพโหลดหลักฐาน</label>
+              <a class="btn btn-info" href="#" data-toggle="modal" data-target="#transfer-account" style="float:right;">
+                บัญชีธนาคาร
+              </a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="transfer-account" tabindex="-1" role="dialog" aria-labelledby="transfer-account-label" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="transfer-account-label">บัญชีธนาคาร</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img src="/assets/img/bank_account/bank.jpg" alt="bank_account" style="width:100%;">
+                  </div>
+                </div>
+              </div>
+            </div><br><br>
               <form class="" action="/upload-slip" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="course_id" value="{{$course->course_id}}">
                 <input type="hidden" name="course_name" value="{{$course->course_name}}">

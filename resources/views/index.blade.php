@@ -54,13 +54,14 @@
               <div class="row">
                 <div class="col-lg-12 mt-5" style="text-align:center;">
                     <a class="course-link" href="/see-course/{{$popular_courses->course_id}}" style="text-align:left;">
-                      <div class="card hvr-grow-shadow" style="width:80%;">
+                      <div class="card hvr-grow-shadow" style="width:100%;">
                         <img class="card-img-top course-img" src="/assets/img/course/{{$popular_courses->course_img}}" alt="course_img">
                         <div class="card-body">
-                          <h2 class="card-title">{{$popular_courses->course_name}}</h2><hr>
+                          <h2 class="card-title course-title">{{str_limit($popular_courses->course_name,38)}}</h2><hr>
                           <h2 class="card-text">
+                            <p style="float:right;">{{$popular_courses->course_teacher_name}}</p>
                             <span class="badge badge-primary">฿ {{$popular_courses->course_price}}</span>
-                            <span class="badge badge-secondary" style="float:right;">
+                            <span class="badge badge-info" style="float:right;">
                               {{$popular_courses->course_now_joining}}/{{$popular_courses->course_max}}
                             </span>
                           </h2>
@@ -93,13 +94,14 @@
       <div class="row">
       <div class="col-lg-12 mt-5" style="text-align:center;">
         <a class="course-link" href="/see-course/{{$suggest_courses->course_id}}" style="text-align:left;">
-      <div class="card hvr-grow-shadow" style="width:80%;">
+      <div class="card hvr-grow-shadow" style="width:100%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
         <div class="card-body">
-          <h2 class="card-title">{{$suggest_courses->course_name}}</h2><hr>
+          <h2 class="card-title course-title">{{str_limit($suggest_courses->course_name,38)}}</h2><hr>
           <h2 class="card-text">
+            <p style="float:right;">{{$suggest_courses->course_teacher_name}}</p>
               <span class="badge badge-primary">฿ {{$suggest_courses->course_price}}</span>
-              <span class="badge badge-secondary" style="float:right;">
+              <span class="badge badge-info" style="float:right;">
                 {{$suggest_courses->course_now_joining}}/{{$suggest_courses->course_max}}
               </span>
           </h2>
@@ -121,12 +123,12 @@
     <div class="col-lg-12">
       <h1>หมวดหมู่งานยอดนิยม</h1><hr>
     </div>
-    @if($show_category->count() == 0)
+    @if($suggest_category->count() == 0)
     <div class="col-lg-12 mt-5 mb-5">
       <h2 style="text-align:center;">ยังไม่มีหมวดหมู่แนะนำ</h2>
     </div>
     @else
-    @foreach($show_category as $categorys)
+    @foreach($suggest_category as $categorys)
       <div class="col-lg-3">
         <a href="/category/{{$categorys->category_id}}">
         <figure class="figure hvr-underline-reveal">

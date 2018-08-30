@@ -1,11 +1,67 @@
 body  {
-  font-family: kanit;
+ font-family: "Thai Sans Neue Regular";
+ font-size: 24px;
 }
+
+small {
+  font-size:16px !important;
+}
+
+input {
+  font-size:20px !important;
+}
+
+h1  {
+  font-size: 50px !important;
+}
+
+h2  {
+  font-size: 38px !important;
+}
+
+h3  {
+  font-size: 35px !important;
+}
+
+h4  {
+  font-size: 32px !important;
+}
+
+h5  {
+  font-size: 30px !important;
+}
+
+h6  {
+  font-size: 25px !important;
+}
+
+p {
+  font-size: 22px !important;
+}
+
+.btn  {
+  font-size:20px;
+}
+
+.dropdown-item  {
+  font-size: 20px !important;
+}
+
+@font-face {
+ font-family: "Thai Sans Neue Regular";
+ src:
+ url('/assets/fonts/ThaiSansNeue-Regular.ttf') format('truetype');
+ }
+
 
 .profile-img  {
   width:20px;
   height: 20px;
   border-radius: 50%;
+}
+
+.course-title   {
+  height:100px;
 }
 
 .edit-profile-img   {
@@ -89,8 +145,9 @@ body  {
 }
 
 .footer-mod {
-  color:white;
-  background-color:#2f87b8;
+  background-color: white;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.5);
   height:280px;
   margin-top: 200px;
 }

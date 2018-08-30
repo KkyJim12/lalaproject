@@ -4,7 +4,7 @@
 <div class="container mt-3 mb-5">
   <div class="row">
     <div class="col-lg-12">
-      <h1>{{$course->course_name}}</h1><hr>
+      <h1>{{str_limit($course->course_name,70)}}</h1><hr>
     </div>
     <div class="col-lg-12">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <h3>{{$course->course_name}}</h3><hr>
+      <h3>{{str_limit($course->course_name,42)}}</h3><hr>
       <h5>ราคา {{$course->course_price}} บาท</h5>
       <p>สถานที่เรียน: {{$course->course_place}}</p>
       <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>

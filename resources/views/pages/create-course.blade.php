@@ -29,7 +29,7 @@
       </div>
       <div class="form-group col-lg-3">
         <label for="course_category">หมวดหมู่</label>
-        <select name="category_id" class="custom-select" id="course_category">
+        <select name="category_id" class="custom-select" id="course_category" style="padding:0px;">
           <option>กรุณาเลือกหมวดหมู่</option>
           @foreach($show_category as $show_categorys)
           <option value="{{$show_categorys->category_id}}">{{$show_categorys->category_name}}</option>
@@ -95,10 +95,12 @@
       <div class="form-group col-lg-6">
         <label for="course_website">เว็บไซต์</label>
         <input type="text" class="form-control" id="course_website" name="course_website" placeholder="กรุณาใส่เว็บไซต์">
+        <small id="emailHelp" class="form-text text-muted">(ใส่เป็นลิงค์ https://)</small>
       </div>
       <div class="form-group col-lg-6">
         <label for="course_facebook">เฟสบุ๊ค</label>
         <input type="text" class="form-control" id="course_facebook" name="course_facebook" placeholder="กรุณาใส่ลิงค์เฟสบุ๊ค">
+        <small id="emailHelp" class="form-text text-muted">(ใส่เป็นลิงค์ https://)</small>
       </div>
       <div class="form-group col-lg-12">
         <label for="course_detail">รายละเอียดคอร์ส</label>

@@ -4,7 +4,7 @@
 <div class="container mt-3 mb-5">
   <div class="row">
     <div class="col-lg-12">
-      <h1>{{$course->course_name}}</h1><hr>
+      <h1>{{str_limit($course->course_name,70)}}</h1><hr>
     </div>
     <div class="col-lg-12">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -37,7 +37,7 @@
         <img class="card-img-top course-detail-img" src="/assets/img/profile/{{$mycourse->myuser->user_img}}" alt="user_img">
         <div class="card-body">
           <h5 class="card-title">เกี่ยวกับผู้สอน</h5>
-          <p>ชื่อ: {{$course->course_teacher_name}}</p>
+          <p>ชื่อ: {{str_limit($course->course_name,42)}}</p>
           <p>โรงเรียน:{{$course->course_teacher_school}}</p>
           <p>มหาลัย:{{$course->course_teacher_college}}</p>
           <p>ผลงาน: {{$course->course_teacher_awards}}</p>

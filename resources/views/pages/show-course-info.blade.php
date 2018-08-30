@@ -20,11 +20,12 @@
     @foreach($course as $courses)
     <div class="col-lg-3 mt-5">
       <a class="course-link" href="/see-course/{{$courses->course_id}}">
-      <div class="card hvr-grow-shadow" style="width:80%;">
+      <div class="card hvr-grow-shadow" style="width:100%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
         <div class="card-body">
-          <h2 class="card-title">{{$courses->course_name}}</h2><hr>
-          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-secondary" style="float:right;">0/{{$courses->course_max}}</span></h2>
+          <h2 class="card-title course-title">{{str_limit($courses->course_name,30)}}</h2><hr>
+          <p style="float:right;">{{$courses->course_teacher_name}}</p>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-info" style="float:right;">0/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
         </div>
       </div>

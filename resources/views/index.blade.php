@@ -54,14 +54,14 @@
               <div class="row">
                 <div class="col-lg-12 mt-5" style="text-align:center;">
                     <a class="course-link" href="/see-course/{{$popular_courses->course_id}}" style="text-align:left;">
-                      <div class="card hvr-grow-shadow" style="width:100%;">
+                      <div class="card hvr-grow-shadow" style="width:90%;">
                         <img class="card-img-top course-img" src="/assets/img/course/{{$popular_courses->course_img}}" alt="course_img">
                         <div class="card-body">
                           <h2 class="card-title course-title">{{str_limit($popular_courses->course_name,38)}}</h2><hr>
                           <h2 class="card-text">
-                            <p style="float:right;">{{$popular_courses->course_teacher_name}}</p>
+                            <p>{{$popular_courses->course_teacher_name}}</p>
                             <span class="badge badge-primary">฿ {{$popular_courses->course_price}}</span>
-                            <span class="badge badge-info" style="float:right;">
+                            <span class="badge badge-info" style="float:right;margin-top:5px;">
                               {{$popular_courses->course_now_joining}}/{{$popular_courses->course_max}}
                             </span>
                           </h2>
@@ -94,14 +94,14 @@
       <div class="row">
       <div class="col-lg-12 mt-5" style="text-align:center;">
         <a class="course-link" href="/see-course/{{$suggest_courses->course_id}}" style="text-align:left;">
-      <div class="card hvr-grow-shadow" style="width:100%;">
+      <div class="card hvr-grow-shadow" style="width:90%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
         <div class="card-body">
           <h2 class="card-title course-title">{{str_limit($suggest_courses->course_name,38)}}</h2><hr>
           <h2 class="card-text">
-            <p style="float:right;">{{$suggest_courses->course_teacher_name}}</p>
+            <p>{{$suggest_courses->course_teacher_name}}</p>
               <span class="badge badge-primary">฿ {{$suggest_courses->course_price}}</span>
-              <span class="badge badge-info" style="float:right;">
+              <span class="badge badge-info" style="float:right; margin-top:5px;">
                 {{$suggest_courses->course_now_joining}}/{{$suggest_courses->course_max}}
               </span>
           </h2>

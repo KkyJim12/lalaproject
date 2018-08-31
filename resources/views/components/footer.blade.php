@@ -23,12 +23,12 @@
   </div>
 </div>
 </div>
-<div class="" style="border-top:1px solid rgba(0,0,0,0.1)">
+<div class="" style="border-top:1px solid rgba(0,0,0,0.1);">
   <div class="container">
     <div class="row" style="">
       <div class="col-lg-12 mt-3">
         <span>@2018 Bestskill</span>
-        <span style="float:right;">Engine by Jimmy Developments</span>
+        <span style="float:right;">Engine by JimmyDev</span>
       </div>
     </div>
   </div>

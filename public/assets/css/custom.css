@@ -9,6 +9,12 @@ small {
 
 input {
   font-size:20px !important;
+  padding: 18px !important;
+}
+
+select {
+  font-size: 18px;
+  padding: 2px !important;
 }
 
 h1  {
@@ -40,7 +46,7 @@ p {
 }
 
 .btn  {
-  font-size:20px;
+  font-size:15px;
 }
 
 .dropdown-item  {

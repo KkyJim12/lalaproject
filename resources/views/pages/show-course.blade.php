@@ -25,8 +25,8 @@
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
         <div class="card-body">
           <h2 class="card-title course-title">{{str_limit($courses->course_name,30)}}</h2><hr>
-          <p style="float:right;">{{$courses->course_teacher_name}}</p>
-          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-info" style="float:right;">{{$courses->course_now_joining}}/{{$courses->course_max}}</span></h2>
+          <p>{{$courses->course_teacher_name}}</p>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-info" style="float:right; margin-top:5px;">{{$courses->course_now_joining}}/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
           <a class="btn btn-danger form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
         </div>
@@ -46,8 +46,8 @@
         <img class="card-img-top course-img" src="/assets/img/course/{{$mycourses->course_img}}" alt="course_img">
         <div class="card-body">
           <h2 class="card-title course-title">{{str_limit($mycourses->course_name,30)}}</h2><hr>
-          <p style="float:right;">{{$courses->course_teacher_name}}</p>
-          <h2 class="card-text"><span class="badge badge-primary">฿ {{$mycourses->course_price}}</span><span class="badge badge-info" style="float:right;">{{$mycourses->course_now_joining}}/{{$mycourses->course_max}}</span></h2>
+          <p>{{$courses->course_teacher_name}}</p>
+          <h2 class="card-text"><span class="badge badge-primary">฿ {{$mycourses->course_price}}</span><span class="badge badge-info" style="float:right; margin-top:5px;">{{$mycourses->course_now_joining}}/{{$mycourses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($mycourses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($mycourses->course_end_date))}}</small>
         </div>
       </div>

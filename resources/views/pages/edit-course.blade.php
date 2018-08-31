@@ -123,7 +123,7 @@
   <h3>รูปอื่นๆ</h3>
   <div class="row mb-5">
     @foreach($course_other_img as $course_other_imgs)
-    <div class="col-lg-2">
+    <div class="col-lg-2 mb-3">
       <img src="/assets/img/courseimg/{{$course_other_imgs->course_other_img_img}}"  style="width:100%; height:150px;">
       <form class="" action="/delete-course-other-img/{{$course_other_imgs->course_other_img_id}}" method="post">
         <input type="hidden" name="{{$course_other_imgs->course_other_img_id}}" value="">

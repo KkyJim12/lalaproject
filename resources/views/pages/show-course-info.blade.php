@@ -23,7 +23,7 @@
       <div class="card hvr-grow-shadow" style="width:100%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$courses->course_img}}" alt="course_img">
         <div class="card-body">
-          <h2 class="card-title course-title">{{str_limit($courses->course_name,30)}}</h2><hr>
+          <h4 class="card-title course-title">{{str_limit($courses->course_name,30)}}</h4><hr>
           <p>{{$courses->course_teacher_name}}</p>
           <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-info" style="float:right; margin-top:5px;">0/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>

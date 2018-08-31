@@ -57,7 +57,7 @@
                       <div class="card hvr-grow-shadow" style="width:90%;">
                         <img class="card-img-top course-img" src="/assets/img/course/{{$popular_courses->course_img}}" alt="course_img">
                         <div class="card-body">
-                          <h2 class="card-title course-title">{{str_limit($popular_courses->course_name,38)}}</h2><hr>
+                          <h4 class="card-title course-title">{{str_limit($popular_courses->course_name,38)}}</h4><hr>
                           <h2 class="card-text">
                             <p>{{$popular_courses->course_teacher_name}}</p>
                             <span class="badge badge-primary">฿ {{$popular_courses->course_price}}</span>
@@ -97,7 +97,7 @@
       <div class="card hvr-grow-shadow" style="width:90%;">
         <img class="card-img-top course-img" src="/assets/img/course/{{$suggest_courses->course_img}}" alt="course_img">
         <div class="card-body">
-          <h2 class="card-title course-title">{{str_limit($suggest_courses->course_name,38)}}</h2><hr>
+          <h4 class="card-title course-title">{{str_limit($suggest_courses->course_name,38)}}</h4><hr>
           <h2 class="card-text">
             <p>{{$suggest_courses->course_teacher_name}}</p>
               <span class="badge badge-primary">฿ {{$suggest_courses->course_price}}</span>

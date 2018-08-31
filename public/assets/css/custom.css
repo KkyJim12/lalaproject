@@ -12,6 +12,10 @@ input {
   padding: 18px !important;
 }
 
+label {
+  font-size: 14px !important;
+}
+
 select {
   font-size: 18px;
   padding: 2px !important;

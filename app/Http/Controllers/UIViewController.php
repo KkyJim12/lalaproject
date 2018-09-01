@@ -50,10 +50,66 @@ class UIViewController extends Controller
     }
 
     public function ShowSearchResult(Request $request)  {
+      if ($request->search_data == null) {
+        $category = Category::all();
+        $search_data = $request->search_data;
+        return view('pages.searchnone',[
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                       ]);
+      }
       $search_data = $request->search_data;
       $category = Category::all();
       $mytime = Carbon\Carbon::now();
       $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$request->search_data.'%')->orWhere('course_place','Like','%'.$request->search_data.'%')->paginate(40);
+      return view('pages.search-result',[
+                                        'search_result' => $search_result,
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                        ]);
+    }
+
+    public function ShowSearchPriceDESC($search_data) {
+      $search_data = $search_data;
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$search_data.'%')->orWhere('course_place','Like','%'.$search_data.'%')->orderBy('course_price','desc')->paginate(40);
+      return view('pages.search-result',[
+                                        'search_result' => $search_result,
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                        ]);
+    }
+
+    public function ShowSearchPriceASC($search_data) {
+      $search_data = $search_data;
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$search_data.'%')->orWhere('course_place','Like','%'.$search_data.'%')->orderBy('course_price','asc')->paginate(40);
+      return view('pages.search-result',[
+                                        'search_result' => $search_result,
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                        ]);
+    }
+
+    public function ShowSearchNumDESC($search_data) {
+      $search_data = $search_data;
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$search_data.'%')->orWhere('course_place','Like','%'.$search_data.'%')->orderBy('course_now_joining','desc')->paginate(40);
+      return view('pages.search-result',[
+                                        'search_result' => $search_result,
+                                        'show_category' => $category,
+                                        'search_data' => $search_data,
+                                        ]);
+    }
+
+    public function ShowSearchNumASC($search_data) {
+      $search_data = $search_data;
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $search_result = Course::where('course_expire_date','>',$mytime)->where('course_name','Like','%'.$search_data.'%')->orWhere('course_place','Like','%'.$search_data.'%')->orderBy('course_now_joining','asc')->paginate(40);
       return view('pages.search-result',[
                                         'search_result' => $search_result,
                                         'show_category' => $category,
@@ -143,6 +199,78 @@ class UIViewController extends Controller
       $mytime = Carbon\Carbon::now();
       $that_category = Category::where('category_id',$category_id)->first();
       $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->paginate(40);
+      if ($that_category == null) {
+        abort(404);
+      }
+      else {
+        return view('pages.category',[
+                                      'that_category' => $that_category,
+                                      'show_category' => $category,
+                                      'course_in_category' => $course_in_category,
+                                     ]);
+      }
+
+    }
+
+    public function ShowPriceCategoryDESC($category_id)  {
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $that_category = Category::where('category_id',$category_id)->first();
+      $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->orderBy('course_price','desc')->paginate(40);
+      if ($that_category == null) {
+        abort(404);
+      }
+      else {
+        return view('pages.category',[
+                                      'that_category' => $that_category,
+                                      'show_category' => $category,
+                                      'course_in_category' => $course_in_category,
+                                     ]);
+      }
+
+    }
+
+    public function ShowPriceCategoryASC($category_id)  {
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $that_category = Category::where('category_id',$category_id)->first();
+      $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->orderBy('course_price','asc')->paginate(40);
+      if ($that_category == null) {
+        abort(404);
+      }
+      else {
+        return view('pages.category',[
+                                      'that_category' => $that_category,
+                                      'show_category' => $category,
+                                      'course_in_category' => $course_in_category,
+                                     ]);
+      }
+
+    }
+
+    public function ShowNumCategoryDESC($category_id)  {
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $that_category = Category::where('category_id',$category_id)->first();
+      $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->orderBy('course_now_joining','desc')->paginate(40);
+      if ($that_category == null) {
+        abort(404);
+      }
+      else {
+        return view('pages.category',[
+                                      'that_category' => $that_category,
+                                      'show_category' => $category,
+                                      'course_in_category' => $course_in_category,
+                                     ]);
+      }
+
+    }
+
+    public function ShowNumCategoryASC($category_id)  {
+      $category = Category::all();
+      $mytime = Carbon\Carbon::now();
+      $that_category = Category::where('category_id',$category_id)->first();
+      $course_in_category = Course::where('category_id',$category_id)->where('course_expire_date','>',$mytime)->orderBy('course_now_joining','asc')->paginate(40);
       if ($that_category == null) {
         abort(404);
       }

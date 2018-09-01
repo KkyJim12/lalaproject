@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
     ];
 
     /**
@@ -26,7 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
+      $schedule->call(function () {
+            DB::table('study')->where('study_status',null)->where('study_approve',null)->delete();
+        })->daily();
     }
 
     /**

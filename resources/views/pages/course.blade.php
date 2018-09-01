@@ -78,7 +78,7 @@
             </div>
           </div>
         @endif
-        <div class="col-lg-3">
+        <div class="col-lg-3 mb-3">
           <div class="card" style="width: 100%;">
             <img class="card-img-top course-detail-img" src="/assets/img/profile/{{$mycourse->myuser->user_img}}" alt="user_img">
             <div class="card-body">

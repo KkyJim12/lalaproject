@@ -3,9 +3,20 @@
 @section('content')
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-12">
-      <h1>ผลการค้นหา "{{$search_data}}"</h1><hr>
+    <div class="col-lg-10">
+      <h1>ผลการค้นหา "{{$search_data}}"</h1>
     </div>
+    <div class="col-lg-2 mt-4">
+      <select name="category_id" class="custom-select" id="course_category" style="padding:0px;" onchange="location = this.value;">
+        <option>เรียงตาม</option>
+        <option value="/search-price-arrange-desc/{{$search_data}}">ราคา: น้อย-มาก</option>
+        <option value="/search-price-arrange-asc/{{$search_data}}">ราคา: มาก-น้อย</option>
+        <option value="/search-num-arrange-desc/{{$search_data}}">จำนวน: น้อย-มาก</option>
+        <option value="/search-num-arrange-desc/{{$search_data}}">จำนวน: มาก-น้อย</option>
+      </select>
+    </div>
+    </div>
+    <hr>
     @if($search_result->count() == 0)
     <div class="col-lg-12">
       <h1 class="mt-5" style="font-size:100px; text-align:center;">ไม่พบข้อมูลการค้าหา</h1>
@@ -27,7 +38,6 @@
    </div>
    @endforeach
    @endif
-  </div>
   <div class="row">
     <div class="col-lg-12 mt-5">
       {{ $search_result->links() }}

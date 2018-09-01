@@ -49,6 +49,10 @@ p {
   font-size: 22px !important;
 }
 
+.owl-stage-outer  {
+  height: 110% !important;
+}
+
 .btn  {
   font-size:15px;
 }

@@ -3,10 +3,20 @@
 @section('content')
 <div class="container mt-5">
   <div class="row">
-    <div class="col-lg-12">
-      <h1>{{$that_category->category_name}}</h1><hr>
+    <div class="col-lg-10">
+      <h1>{{$that_category->category_name}}</h1>
+    </div>
+    <div class="col-lg-2 mt-4">
+      <select name="category_id" class="custom-select" id="course_category" style="padding:0px;" onchange="location = this.value;">
+        <option>เรียงตาม</option>
+        <option value="/category-price-arrange-desc/{{$that_category->category_id}}">ราคา: น้อย-มาก</option>
+        <option value="/category-price-arrange-asc/{{$that_category->category_id}}">ราคา: มาก-น้อย</option>
+        <option value="/category-num-arrange-desc/{{$that_category->category_id}}">จำนวน: น้อย-มาก</option>
+        <option value="/category-num-arrange-asc/{{$that_category->category_id}}">จำนวน: มาก-น้อย</option>
+      </select>
     </div>
   </div>
+  <hr>
   <div class="row">
     @foreach($course_in_category as $course_in_categorys)
     <div class="col-lg-3 mt-5" style="text-align:center;">

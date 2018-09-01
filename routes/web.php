@@ -61,6 +61,14 @@ Route::post('/admin-edit-category-process/{category_id}','AdminController@AdminE
 
 Route::get('/category/{category_id}','UIViewController@ShowCategory');
 
+Route::get('/category-price-arrange-desc/{category_id}','UIViewController@ShowPriceCategoryDESC');
+
+Route::get('/category-price-arrange-asc/{category_id}','UIViewController@ShowPriceCategoryASC');
+
+Route::get('/category-num-arrange-desc/{category_id}','UIViewController@ShowNumCategoryDESC');
+
+Route::get('/category-num-arrange-asc/{category_id}','UIViewController@ShowNumCategoryASC');
+
 Route::get('/admin-slide','UIViewController@ShowAdminSlide')->name('admin-slide')->middleware('admin');
 
 Route::get('/admin-create-slide','UIViewController@ShowAdminCreateSlide')->middleware('admin');
@@ -146,6 +154,14 @@ Route::post('/admin-transfer-approve/{course_id}','StudyController@AdminTransfer
 Route::post('/admin-transfer-reject/{course_id}','StudyController@AdminTransferReject')->middleware('admin');
 
 Route::get('/search-data','UIViewController@ShowSearchResult');
+
+Route::get('/search-price-arrange-desc/{search_data}','UIViewController@ShowSearchPriceDESC');
+
+Route::get('/search-price-arrange-asc/{search_data}','UIViewController@ShowSearchPriceASC');
+
+Route::get('/search-num-arrange-desc/{search_data}','UIViewController@ShowSearchNumDESC');
+
+Route::get('/search-num-arrange-asc/{search_data}','UIViewController@ShowSearchNumASC');
 
 Route::post('/delete-course-other-img/{course_other_img_id}','CourseController@DelteCourseOtherImgProcess')->middleware('login');
 

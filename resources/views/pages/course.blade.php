@@ -183,7 +183,6 @@
               <input type="hidden" name="course_id" value="{{$course->course_id}}">
               <script type="text/javascript" src="https://cdn.omise.co/card.js"
                 data-key="pkey_test_5cxodoewdmtrmj4j1g4"
-                data-image="PATH_TO_LOGO_IMAGE"
                 data-frame-label="www.Bestskill.co"
                 data-button-label="จ่ายบัตรเครดิต/เดบิต"
                 data-submit-label="ยืนยันการชำระเงิน"

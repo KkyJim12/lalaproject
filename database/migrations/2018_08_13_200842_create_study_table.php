@@ -16,6 +16,12 @@ class CreateStudyTable extends Migration
         Schema::create('study', function (Blueprint $table) {
             $table->increments('study_id');
             $table->integer('user_id');
+            $table->string('user_img');
+            $table->string('user_fname');
+            $table->string('user_lname');
+            $table->string('user_email');
+            $table->date('user_birthdate');
+            $table->string('user_gender');
             $table->integer('course_id');
             $table->boolean('study_status')->nullable();
             $table->boolean('study_approve')->nullable();

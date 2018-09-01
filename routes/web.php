@@ -165,4 +165,5 @@ Route::get('/search-num-arrange-asc/{search_data}','UIViewController@ShowSearchN
 
 Route::post('/delete-course-other-img/{course_other_img_id}','CourseController@DelteCourseOtherImgProcess')->middleware('login');
 
+Route::get('/see-student/{course_id}','UIViewController@ShowSeeStudent')->middleware('login');
 //Route::get('/wallet/{user_id}','UIViewController@ShowWallet');//

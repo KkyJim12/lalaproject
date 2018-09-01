@@ -4,15 +4,12 @@
     <meta charset="utf-8">
     <meta name="google-signin-client_id" content="330857847010-j3q0mn7ksis1ck3uc5scuf51ci2cpf9e.apps.googleusercontent.com">
     <title></title>
-    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <link rel="stylesheet" href="/assets/css/dropzone.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="/assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="assets/js/dropzone.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
@@ -24,7 +21,7 @@
   js.src = 'https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v3.1&appId=548224705534255&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-mod">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-mod">
   <div class="container">
   <a class="navbar-brand" href="/">อบรม.com</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">

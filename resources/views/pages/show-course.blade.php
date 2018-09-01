@@ -29,6 +29,7 @@
           <h2 class="card-text"><span class="badge badge-primary">฿ {{$courses->course_price}}</span><span class="badge badge-info" style="float:right; margin-top:5px;">{{$courses->course_now_joining}}/{{$courses->course_max}}</span></h2>
           <small class="text-muted">เริ่มเรียน {{date('d/m/Y', strtotime($courses->course_start_date))}} ถึง {{date('d/m/Y', strtotime($courses->course_end_date))}}</small>
           <a class="btn btn-danger form-control mt-2" href="/edit-course/{{$courses->course_id}}">แก้ไข</a>
+          <a class="btn btn-info form-control mt-2" href="/see-student/{{$courses->course_id}}">รายชื่อผู้สมัคร</a>
         </div>
       </div>
     </a>

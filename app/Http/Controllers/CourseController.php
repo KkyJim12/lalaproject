@@ -6,6 +6,7 @@ use App\CourseOtherImg;
 use App\User;
 class CourseController extends Controller
 {
+
     public function CreateCourseProcess(Request $request) {
       $validatedData = $request->validate([
         'category_id' => 'required|numeric|max:255',
@@ -25,7 +26,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'required|image|max:2048',
-        'course_other_img.course_other_img' => 'required|image|max:2048',
+        'course_other_img.*' => 'required|image|max:2048',
       ]);
       $coursemax = Course::where('user_id',$request->user_id)->get();
       $user_id = User::where('user_id',$request->user_id)->first();
@@ -65,7 +66,7 @@ class CourseController extends Controller
          {
             foreach($request->file('course_other_img') as $file)
             {
-                $name=$file->getClientOriginalName();
+                $name=uniqid().'.'.$file->getClientOriginalName();
                 $destinationPathOther = public_path('/assets/img/courseimg');
                 $file->move($destinationPathOther, $name);
                 $data[] = $name;
@@ -99,7 +100,7 @@ class CourseController extends Controller
         'course_email' => 'required|max:255',
         'course_detail' => 'required|max:5000',
         'course_img' => 'image|max:2048',
-        'course_other_img.course_other_img' => 'image|max:2048',
+        'course_other_img.*' => 'image|max:2048',
       ]);
       if (isset($request->course_img) & isset($request->course_other_img)) {
         $image = $request->file('course_img');

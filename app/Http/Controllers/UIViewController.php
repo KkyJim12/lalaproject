@@ -524,4 +524,25 @@ class UIViewController extends Controller
       }
 
     }
+
+    public function ShowSeeStudent($course_id)  {
+      $owncourse = Course::where('course_id',$course_id)->first();
+      $category = Category::all();
+      if ($owncourse == null) {
+        abort(404);
+      }
+      elseif ($owncourse->user_id !== session('user_id')) {
+        return redirect()->back();
+      }
+      else {
+        $student = Study::where('course_id',$course_id)->get();
+        $today = date("Y-m-d");
+        return view('pages.see-student',[
+                                        'owncourse' => $owncourse,
+                                        'show_category' => $category,
+                                        'student' => $student,
+                                        'today' => $today,
+                                        ]);
+      }
+    }
 }

@@ -34,6 +34,12 @@ class OmiseController extends Controller
       $mycourse = Course::where('course_id',$request->course_id)->first();
       $study = new Study;
       $study->user_id = session('user_id');
+      $study->user_img = session('user_img');
+      $study->user_fname = session('user_fname');
+      $study->user_lname = session('user_lname');
+      $study->user_email = session('user_email');
+      $study->user_birthdate = session('user_birthdate');
+      $study->user_gender = session('user_gender');
       $study->course_id = $request->course_id;
       $study->study_approve = true;
       $study->course_img = $mycourse->course_img;

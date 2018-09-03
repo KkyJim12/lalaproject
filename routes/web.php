@@ -13,12 +13,16 @@
 
 Auth::routes();
 
+//////////////////////////////////////////////////////////////////////////////////
+
+/*
 Route::any('/google/redirect', 'SocialAuthGoogleController@redirect');
 Route::any('/google/callback', 'SocialAuthGoogleController@callback');
 
 
 Route::any('/facebook/redirect', 'SocialAuthFacebookController@redirect');
 Route::any('/facebook/callback', 'SocialAuthFacebookController@callback');
+*/
 //////////////////////////////////////////////////////////////////////////////////
 
 Route::post('/omise-checkout','OmiseController@OmiseCheckout')->middleware('login');

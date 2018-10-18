@@ -1,16 +1,21 @@
 <footer class="footer-mod">
 <div class="container" style="background-color:#008CBA">
 <div class="row" style="">
-  <div class="col-lg-4 mt-4">
+  <div class="col-lg-3 mt-4">
+    <p>วิธีการชำระเงิน</p><hr>
+    <img src="/assets/img/logo/kbank.png" alt="k-bank" style="width:100px;">
+    <img src="/assets/img/logo/omise.png" alt="k-bank" style="width:100px;">
+  </div>
+  <div class="col-lg-3 mt-4">
     <p>เกี่ยวกับเรา</p><hr>
     <p>Bestskill เป็นเว็บรวบรวมคอร์สเรียน</p>
-    <p>เพื่อให้ผู้ใช้สามารถสมัคร และ เลือกสรรคอร์สเรียน</p>
-    <p>ได้เหมาะสมกับเราที่สุด และ คุ้มค่าที่สุด</p>
+    <p>เพื่อให้ผู้เรียนได้เลือกสรรคอร์สเรียน</p>
+    <p>ได้ตอบโจทย์ กับผู้เรียนมากที่สุด</p>
   </div>
-  <div class="col-lg-4 mt-4" style="background-color:#008CBA">
+  <div class="col-lg-2 mt-4" style="background-color:#008CBA">
     <p>ติดต่อเรา</p><hr>
     <p>Line: @bestskill</p>
-    <p>Email: bestskillth@gmail.com</p>
+    <p>bestskillth@gmail.com</p>
     <p>Tel: 099-6593695</p>
   </div>
   <div class="col-lg-4 mt-4 mb-3" style="background-color:#008CBA">

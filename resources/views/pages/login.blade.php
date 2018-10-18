@@ -39,8 +39,9 @@
           </div>
           @csrf
           <button class="btn btn-success form-control mt-2" type="submit">ล๊อกอิน</button>
-        </form><hr>
+        </form>
       <!--
+      <hr>
         <div class="row justify-content-center">
           <div class="col-lg-4">
             <a href="/google/redirect" class="btn btn-block btn-social btn-google form-control"><i class="fab fa-google"></i>Google Login</a>

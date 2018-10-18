@@ -1,5 +1,5 @@
 <footer class="footer-mod">
-<div class="container">
+<div class="container" style="background-color:#008CBA">
 <div class="row" style="">
   <div class="col-lg-4 mt-4">
     <p>เกี่ยวกับเรา</p><hr>
@@ -7,13 +7,13 @@
     <p>เพื่อให้ผู้ใช้สามารถสมัคร และ เลือกสรรคอร์สเรียน</p>
     <p>ได้เหมาะสมกับเราที่สุด และ คุ้มค่าที่สุด</p>
   </div>
-  <div class="col-lg-4 mt-4">
+  <div class="col-lg-4 mt-4" style="background-color:#008CBA">
     <p>ติดต่อเรา</p><hr>
     <p>Line: @bestskill</p>
     <p>Email: bestskillth@gmail.com</p>
     <p>Tel: 099-6593695</p>
   </div>
-  <div class="col-lg-4 mt-4 mb-3">
+  <div class="col-lg-4 mt-4 mb-3" style="background-color:#008CBA">
     <p>Facebook Page</p><hr>
     <div class="fb-page"
   data-href="https://www.facebook.com/230416807620883"

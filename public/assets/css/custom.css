@@ -148,7 +148,7 @@ p {
 .footer-mod {
   background-color:#008CBA;
   border-top: 1px solid rgba(0,0,0,0.1);
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.8);
   height:280px;
   margin-top: 200px;
 }

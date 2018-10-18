@@ -7,12 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
-    <link rel="stylesheet" href="/assets/css/dropzone.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="/assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/custom.js" type="text/javascript"></script>
-    <script src="assets/js/dropzone.js"></script>
     <script src="https://cdn.omise.co/card.js" type="text/javascript"></script>
   </head>
   <body class="body-course">
@@ -98,7 +96,7 @@
           <p>วันเรียน: {{date('d/m/Y', strtotime($course->course_start_date))}} - {{date('d/m/Y', strtotime($course->course_end_date))}}</p>
           <p>สมัครได้ถึง: {{date('d/m/Y', strtotime($course->course_expire_date))}}</p><hr>
           <h3>รายละเอียดอื่นๆ</h3>
-          <p>{{$course->course_detail}}</p>
+          <p>{!! $course->course_detail !!}</p>
         </div>
         <div class="col-lg-3">
           <div class="border course-card">
@@ -205,6 +203,42 @@
   js.src = 'https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v3.1&appId=548224705534255&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    @include('components.footer')
+<footer class="footer-mod">
+<div class="container">
+<div class="row" style="">
+  <div class="col-lg-4 mt-4">
+    <p>เกี่ยวกับเรา</p><hr>
+    <p>Bestskill เป็นเว็บรวบรวมคอร์สเรียน</p>
+    <p>เพื่อให้ผู้ใช้สามารถสมัคร และ เลือกสรรคอร์สเรียน</p>
+    <p>ได้เหมาะสมกับเราที่สุด และ คุ้มค่าที่สุด</p>
+  </div>
+  <div class="col-lg-4 mt-4">
+    <p>ติดต่อเรา</p><hr>
+    <p>Line: @bestskill</p>
+    <p>Email: bestskillth@gmail.com</p>
+    <p>Tel: 099-6593695</p>
+  </div>
+  <div class="col-lg-4 mt-4 mb-3">
+    <p>Facebook Page</p><hr>
+    <div class="fb-page"
+  data-href="https://www.facebook.com/230416807620883"
+  data-width="380"
+  data-hide-cover="false"
+  data-show-facepile="false"></div>
+  </div>
+</div>
+</div>
+<div class="" style="border-top:1px solid rgba(0,0,0,0.1);">
+  <div class="container">
+    <div class="row" style="">
+      <div class="col-lg-12 mt-3">
+        <span>@2018 Bestskill</span>
+        <span style="float:right;">Engine by JimmyDev</span>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
   </body>
 </html>

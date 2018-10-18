@@ -23,7 +23,7 @@
   </div>
 </div>
 </div>
-<div class="" style="border-top:1px solid rgba(0,0,0,0.1);">
+<div style="border-top:1px solid rgba(0,0,0,0.1); background-color:#008CBA">
   <div class="container">
     <div class="row" style="">
       <div class="col-lg-12 mt-3">

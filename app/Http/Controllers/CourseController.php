@@ -246,4 +246,15 @@ class CourseController extends Controller
       $course->delete();
       return redirect()->back();
     }
+
+    public function DeleteCourseProcess(Request $request,$course_id)  {
+      $course = Course::where('course_id',$request->course_id)->first();
+      if ($course->course_now_joining >=1) {
+        return redirect()->back()->with('error','ไม่สามารถลบได้เนื่องจากมีผู้สมัครเรียนแล้ว กรุณาติดต่อเจ้าหน้าที่');
+      }
+      else {
+        $course->forceDelete();
+      }
+      return redirect()->back();
+    }
 }

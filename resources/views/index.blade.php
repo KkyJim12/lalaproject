@@ -121,7 +121,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-12">
-      <h1>หมวดหมู่งานยอดนิยม</h1><hr>
+      <h1>หมวดหมู่คอร์สยอดนิยม</h1><hr>
     </div>
     @if($suggest_category->count() == 0)
     <div class="col-lg-12 mt-5 mb-5">
